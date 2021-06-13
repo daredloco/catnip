@@ -4,15 +4,13 @@ namespace Catnip{
         public $name;
         public $columns = [];
         public $foreigns = [];
-        protected $db;
 
-        public function __construct($name, $columns = [], $foreigns = [])
-        {
-            $this->name = $name;
-            $this->columns = $columns;
-            $this->foreigns = $foreigns;
-            $this->db = new \CatNip\pd0();
-        }
+        // public function __construct($name, $columns = [], $foreigns = [])
+        // {
+        //     $this->name = $name;
+        //     $this->columns = $columns;
+        //     $this->foreigns = $foreigns;
+        // }
 
         public function Create()
         {
@@ -35,19 +33,19 @@ namespace Catnip{
             }
 
             $sqlquery = "CREATE TABLE IF NOT EXISTS ".$this->name." (".$cols.$foreign.")  ENGINE=INNODB;";
-            $this->db->query($sqlquery);
+            Database::query($sqlquery);
         }
 
         public function Drop()
         {
             $sqlquery = "DROP TABLE IF EXISTS ".$this->name.";";
-            $this->db->query($sqlquery);
+            Database::query($sqlquery);
         }
 
         public function Truncate()
         {
             $sqlquery = "TRUNCATE TABLE ".$this->name.";";
-            $this->db->query($sqlquery);
+            Database::query($sqlquery);
         }
 
         public function Insert($columns)
@@ -64,7 +62,7 @@ namespace Catnip{
                     $values .= ', '."'".$value."'";
                 }
             }
-            return $this->db->insert($this->name, $keys, $values);            
+            return Database::insert($this->name, $keys, $values);            
         }
 
         public function Update($columns, $where, $sign, $result)
@@ -78,13 +76,13 @@ namespace Catnip{
                     $setstr = ', '.$key.'='."'".$value."'";
                 }
             }
-            return $this->db->update($this->name, $setstr, $where.' '.$sign.' '.$result);
+            return Database::update($this->name, $setstr, $where.' '.$sign.' '.$result);
         }
 
         public function Delete($where, $sign, $result)
         {
             $sqlquery = "DELETE FROM ".$this->name." WHERE ".$where.' '.$sign.' "'.$result.'";';
-            $this->db->query($sqlquery);
+            Database::query($sqlquery);
         }
 
         public function Count($where = null, $sign = null, $result = null)
@@ -93,7 +91,7 @@ namespace Catnip{
             {
                 return $db->count($this->name);
             }
-            return $this->db->count($this->name, $where.' '.$sign.' "'.$result.'"');
+            return Database::count($this->name, $where.' '.$sign.' "'.$result.'"');
         }
 
         public function Exists($where, $sign, $result)
@@ -109,19 +107,19 @@ namespace Catnip{
         public function Where($where, $sign, $result)
         {
             $sqlquery = "SELECT * FROM ".$this->name." WHERE ".$where.' '.$sign.' "'.$result.'";';
-            return $this->db->query($sqlquery);
+            return Database::query($sqlquery);
         }
 
         public function All()
         {
             $sqlquery = "SELECT * FROM ".$this->name.";";
-            return $this->db->query($sqlquery);
+            return Database::query($sqlquery);
         }
 
         public function First($where, $sign, $result)
         {
             $sqlquery = "SELECT * FROM ".$this->name." WHERE ".$where.' '.$sign.' "'.$result.'";';
-            $sqlresult = $this->db->query($sqlquery);
+            $sqlresult = Database::query($sqlquery);
             if(count($sqlresult) > 0)
             {
                 return $sqlresult[0];

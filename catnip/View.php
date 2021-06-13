@@ -46,10 +46,19 @@ namespace Catnip{
     
         private static function Compile($content, $cache)
         {
+            //Load Loca
+            if(isset($_SESSION['language']))
+            {
+                $userlanguage = $_SESSION['language'];
+            }else{
+                $userlanguage = null;
+            }
+            Loca::Load($userlanguage);
+
             //Start Cachefunction and Localization
             if($cache)
             {
-                $content = "<?PHP \\Catnip\\Cache::CacheStart(); \\Catnip\\Loca::StartPage(); ?>".$content;
+                $content = "<?PHP \\Catnip\\Loca::StartPage(); \\Catnip\\Cache::CacheStart(); ?>".$content;
             }else{
                 $content = "<?PHP \\Catnip\\Loca::StartPage(); ?>".$content;
             }
@@ -86,7 +95,7 @@ namespace Catnip{
             //End Cachefunction and Localization
             if($cache)
             {
-                $newcontent .= "<?PHP \\Catnip\\Loca::EndPage(); \\Catnip\\Cache::CacheEnd(); ?>";
+                $newcontent .= "<?PHP \\Catnip\\Cache::CacheEnd();  \\Catnip\\Loca::EndPage(); ?>";
             }else{
                 $newcontent .= "<?PHP \\Catnip\\Loca::EndPage(); ?>";
             }

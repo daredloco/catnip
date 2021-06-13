@@ -1,47 +1,13 @@
 <?php
 /*
-Name: pd0.php (modified)
-Version: 04.21
+Name: Database.php (modified pd0.php)
+Version: 06.12
 Copyrights: Roman Wanner 2018-2021
 */
 namespace Catnip{
 	class Database{
-		public $DB_HOST;
-		public $DB_NAME;
-		public $DB_USER;
-		public $DB_PASS;
-	
-		function __construct($host = null, $name = null, $user = null, $pass = null)
-		{
-			if(is_null($host))
-			{
-				$host = DB_HOST;
-			}
-			if(is_null($name))
-			{
-				$name = DB_NAME;
-			}
-			if(is_null($user))
-			{
-				$user = DB_USER;
-			}
-			if(is_null($pass))
-			{
-				$pass = DB_PASS;
-			}
-			
-			$this->DB_HOST = $host;
-			$this->DB_NAME = $name;
-			$this->DB_USER = $user;
-			$this->DB_PASS = $pass;
-		}
-	
-		function delete($dbtable, $dbid, $dbhost = null, $dbname = null, $dbuser = null, $dbpass = null){
-			if(is_null($dbhost)){ $dbhost = $this->DB_HOST;}
-			if(is_null($dbname)){ $dbname = $this->DB_NAME;}
-			if(is_null($dbuser)){ $dbuser = $this->DB_USER;}
-			if(is_null($dbpass)){ $dbpass = $this->DB_PASS;}
-			$db = new \PDO('mysql:host='.$dbhost.';dbname='.$dbname.';charset=utf8', $dbuser, $dbpass, array(\PDO::ATTR_EMULATE_PREPARES => false, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
+		public static function delete($dbtable, $dbid){
+			$db = new \PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset=utf8', DB_USER, DB_PASS, array(\PDO::ATTR_EMULATE_PREPARES => false, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
 			$stmt = $db->prepare('DELETE FROM '.$dbtable.' WHERE id = '.$dbid);
 			$stmt->execute();
 			$affected_rows = $stmt->rowCount();
@@ -49,12 +15,8 @@ namespace Catnip{
 			return $affected_rows;
 		}
 		
-		function count($dbtable, $dbwhere = "", $dbhost = null, $dbname = null, $dbuser = null, $dbpass = null){
-			if(is_null($dbhost)){ $dbhost = $this->DB_HOST;}
-			if(is_null($dbname)){ $dbname = $this->DB_NAME;}
-			if(is_null($dbuser)){ $dbuser = $this->DB_USER;}
-			if(is_null($dbpass)){ $dbpass = $this->DB_PASS;}
-			$db = new \PDO('mysql:host='.$dbhost.';dbname='.$dbname.';charset=utf8', $dbuser, $dbpass, array(\PDO::ATTR_EMULATE_PREPARES => false, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
+		public static function count($dbtable, $dbwhere = ""){
+			$db = new \PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset=utf8', DB_USER, DB_PASS, array(\PDO::ATTR_EMULATE_PREPARES => false, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
 			if($dbwhere == ""){
 				$nRows = $db->query('SELECT COUNT(*) FROM '.$dbtable)->fetchColumn(); 
 			}else{
@@ -63,12 +25,8 @@ namespace Catnip{
 			return $nRows;
 		}
 		
-		function update($dbtable, $dbset, $dbwhere, $dbhost = null, $dbname = null, $dbuser = null, $dbpass = null){
-			if(is_null($dbhost)){ $dbhost = $this->DB_HOST;}
-			if(is_null($dbname)){ $dbname = $this->DB_NAME;}
-			if(is_null($dbuser)){ $dbuser = $this->DB_USER;}
-			if(is_null($dbpass)){ $dbpass = $this->DB_PASS;}
-			$db = new \PDO('mysql:host='.$dbhost.';dbname='.$dbname.';charset=utf8', $dbuser, $dbpass, array(\PDO::ATTR_EMULATE_PREPARES => false, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
+		public static function update($dbtable, $dbset, $dbwhere){
+			$db = new \PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset=utf8', DB_USER, DB_PASS, array(\PDO::ATTR_EMULATE_PREPARES => false, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
 			$stmt = $db->prepare('UPDATE '.$dbtable.' SET '.$dbset.' WHERE '.$dbwhere);
 			$stmt->execute();
 			$affected_rows = $stmt->rowCount();
@@ -76,12 +34,8 @@ namespace Catnip{
 			if($affected_rows > 0){ return TRUE;}else{ return FALSE;}
 		}
 		
-		function insert($dbtable, $dbfields, $dbvalues, $dbhost = null, $dbname = null, $dbuser = null, $dbpass = null){
-			if(is_null($dbhost)){ $dbhost = $this->DB_HOST;}
-			if(is_null($dbname)){ $dbname = $this->DB_NAME;}
-			if(is_null($dbuser)){ $dbuser = $this->DB_USER;}
-			if(is_null($dbpass)){ $dbpass = $this->DB_PASS;}
-			$db = new \PDO('mysql:host='.$dbhost.';dbname='.$dbname.';charset=utf8', $dbuser, $dbpass, array(\PDO::ATTR_EMULATE_PREPARES => false, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
+		public static function insert($dbtable, $dbfields, $dbvalues){
+			$db = new \PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset=utf8', DB_USER, DB_PASS, array(\PDO::ATTR_EMULATE_PREPARES => false, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
 			$stmt = $db->prepare('INSERT INTO '.$dbtable.'('.$dbfields.') VALUES('.$dbvalues.')');
 			$stmt->execute();
 			$affected_rows = $stmt->rowCount();	
@@ -89,12 +43,8 @@ namespace Catnip{
 			if($affected_rows > 0){ return TRUE;}else{ return FALSE;}
 		}
 		
-		function query($query, $args = null, $dbhost = null, $dbname = null, $dbuser = null, $dbpass = null){
-			if(is_null($dbhost)){ $dbhost = $this->DB_HOST;}
-			if(is_null($dbname)){ $dbname = $this->DB_NAME;}
-			if(is_null($dbuser)){ $dbuser = $this->DB_USER;}
-			if(is_null($dbpass)){ $dbpass = $this->DB_PASS;}
-			$db = new \PDO('mysql:host='.$dbhost.';dbname='.$dbname.';charset=utf8', $dbuser, $dbpass, array(\PDO::ATTR_EMULATE_PREPARES => false, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
+		public static function query($query, $args = null){
+			$db = new \PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset=utf8', DB_USER, DB_PASS, array(\PDO::ATTR_EMULATE_PREPARES => false, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
 			$stmt = $db->prepare($query);
 			if(is_array($args) !== true){
 				$stmt->execute();
@@ -104,12 +54,8 @@ namespace Catnip{
 			return $stmt->fetchAll();
 		}
 		
-		function querypaged($query, $itemsperpage, $maxpages = 5, $args = null, $dbhost = null, $dbname = null, $dbuser = null, $dbpass = null){
-			if(is_null($dbhost)){ $dbhost = $this->DB_HOST;}
-			if(is_null($dbname)){ $dbname = $this->DB_NAME;}
-			if(is_null($dbuser)){ $dbuser = $this->DB_USER;}
-			if(is_null($dbpass)){ $dbpass = $this->DB_PASS;}
-			$db = new \PDO('mysql:host='.$dbhost.';dbname='.$dbname.';charset=utf8', $dbuser, $dbpass, array(\PDO::ATTR_EMULATE_PREPARES => false, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
+		public static function querypaged($query, $itemsperpage, $maxpages = 5, $args = null){
+			$db = new \PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset=utf8', DB_USER, DB_PASS, array(\PDO::ATTR_EMULATE_PREPARES => false, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
 			$stmt = $db->prepare($query);
 			if(is_array($args) !== true){
 				$stmt->execute();
@@ -139,12 +85,8 @@ namespace Catnip{
 			return $pages;
 		}
 		
-		function queryarray($query,$args = null,$dbhost = null, $dbname = null, $dbuser = null, $dbpass = null){
-			if(is_null($dbhost)){ $dbhost = $this->DB_HOST;}
-			if(is_null($dbname)){ $dbname = $this->DB_NAME;}
-			if(is_null($dbuser)){ $dbuser = $this->DB_USER;}
-			if(is_null($dbpass)){ $dbpass = $this->DB_PASS;}
-			$db = new \PDO('mysql:host='.$dbhost.';dbname='.$dbname.';charset=utf8', $dbuser, $dbpass, array(\PDO::ATTR_EMULATE_PREPARES => false, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
+		public static function queryarray($query,$args = null){
+			$db = new \PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset=utf8', DB_USER, DB_PASS, array(\PDO::ATTR_EMULATE_PREPARES => false, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
 			$stmt = $db->prepare($query);
 			if(is_array($args) !== true){
 				$stmt->execute();
@@ -158,13 +100,8 @@ namespace Catnip{
 			return $arr;
 		}
 		
-		function exists($table, $where, $dbhost = null, $dbname = null, $dbuser = null, $dbpass = null){
-			if(is_null($dbhost)){ $dbhost = $this->DB_HOST;}
-			if(is_null($dbname)){ $dbname = $this->DB_NAME;}
-			if(is_null($dbuser)){ $dbuser = $this->DB_USER;}
-			if(is_null($dbpass)){ $dbpass = $this->DB_PASS;}
-			
-			$db = new \PDO('mysql:host='.$dbhost.';dbname='.$dbname.';charset=utf8', $dbuser, $dbpass, array(\PDO::ATTR_EMULATE_PREPARES => false, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
+		public static function exists($table, $where){
+			$db = new \PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset=utf8', DB_USER, DB_PASS, array(\PDO::ATTR_EMULATE_PREPARES => false, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
 			$stmt = $db->prepare("SELECT EXISTS(SELECT 1 FROM ".$table." WHERE ".$where.")");
 			$stmt->execute();
 			$affected_rows = $stmt->rowCount();

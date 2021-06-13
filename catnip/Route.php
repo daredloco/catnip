@@ -134,11 +134,13 @@ namespace Catnip{
       if(!$route_match_found){
         if($path_match_found){
           header("HTTP/1.0 405 Method Not Allowed");
+          ErrorHandler::MethodNotAllowed();
           if(self::$methodNotAllowed){
             call_user_func_array(self::$methodNotAllowed, Array($path,$method));
           }
         }else{
           header("HTTP/1.0 404 Not Found");
+          ErrorHandler::NotFound();
           if(self::$pathNotFound){
             call_user_func_array(self::$pathNotFound, Array($path));
           }

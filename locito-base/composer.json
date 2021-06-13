@@ -1,7 +1,8 @@
 {
     
     "require": {
-        "symfony/console": "^5.3"
+        "symfony/console": "^5.3",
+        "symfony/process": "^5.3"
     },
     "autoload": {
       "classmap": ["Commands"]

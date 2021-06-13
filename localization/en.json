@@ -1,0 +1,32 @@
+{
+    "data": {
+        "local": "English",
+        "english": "English"
+    },
+    "dictionary": [
+        {
+            "key": "hello_world",
+            "value": "Hello World!"
+        },
+        {
+            "key": "small",
+            "value": "Small"
+        },
+        {
+            "key": "modular",
+            "value": "Modular"
+        },
+        {
+            "key": "simple",
+            "value": "Simple"
+        },
+        {
+            "key": "under_development",
+            "value": "Under Development"
+        },
+        {
+            "key": "license",
+            "value": "License"
+        }
+    ]
+}

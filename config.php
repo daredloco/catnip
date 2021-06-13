@@ -14,7 +14,7 @@ const CACHE_ACTIVE = false; //Activate/Deactivate Caching
 const CACHE_TIME = 16000; //Time until the cache will be refreshed
 
 //LOCALIZATION CONFIGURATION
-const LOCA_DIRECTORY = __DIR__.'/Localization'; //Directory of the Localization
+const LOCA_DIRECTORY = __DIR__.'/localization'; //Directory of the Localization
 const LOCA_DEFAULT = "en"; //Default Language for the Localization
 
 //FILESYSTEM CONFIGURATION
