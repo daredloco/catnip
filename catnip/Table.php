@@ -5,12 +5,12 @@ namespace Catnip{
         public $columns = [];
         public $foreigns = [];
 
-        // public function __construct($name, $columns = [], $foreigns = [])
-        // {
-        //     $this->name = $name;
-        //     $this->columns = $columns;
-        //     $this->foreigns = $foreigns;
-        // }
+        public function __construct($name, $columns = [], $foreigns = [])
+        {
+            $this->name = $name;
+            $this->columns = $columns;
+            $this->foreigns = $foreigns;
+        }
 
         public function Create()
         {
@@ -89,7 +89,7 @@ namespace Catnip{
         {
             if(is_null($where) || is_null($sign) || is_null($result))
             {
-                return $db->count($this->name);
+                return Database::count($this->name);
             }
             return Database::count($this->name, $where.' '.$sign.' "'.$result.'"');
         }

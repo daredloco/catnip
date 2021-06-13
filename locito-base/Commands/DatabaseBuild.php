@@ -32,16 +32,18 @@ class DatabaseBuild extends Command
         if ($input->getOption($this->commandOptionName)) {
             $output->writeln("Cleaning Database");
             $sTime = microtime(true);
-            $location = dirname(__DIR__, 3).'/Database/Destroy.php';
+            $location = dirname(__DIR__, 2).'/database/Destroy.php';
             require_once($location);
+            \Database\Destroy::Do();
             $eTime = microtime(true);
             $output->writeln("Database cleaned! (".($eTime-$sTime)."ms)");
         }
 
         $output->writeln("Start building the Database");
         $sTime = microtime(true);
-        $location = dirname(__DIR__, 3).'/Database/Create.php';
+        $location = dirname(__DIR__, 2).'/database/Create.php';
         require_once($location);
+        \Database\Create::Do();
         $eTime = microtime(true);
         $output->writeln("Database built! (".($eTime-$sTime)."ms)");
         return 1;

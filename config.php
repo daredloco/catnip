@@ -10,7 +10,7 @@ const DB_USER = "root"; //Name of the database user
 const DB_PASS = ""; //Password from the database user
 
 //CACHE CONFIGURATION
-const CACHE_ACTIVE = false; //Activate/Deactivate Caching
+const CACHE_ACTIVE = true; //Activate/Deactivate Caching
 const CACHE_TIME = 16000; //Time until the cache will be refreshed
 
 //LOCALIZATION CONFIGURATION

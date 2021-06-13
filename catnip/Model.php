@@ -1,10 +1,14 @@
 <?PHP
 namespace Catnip;
 class Model{
-    public $name;
     private $_table;
 
-    public function Create($columns)
+    public function Init($name)
+    {
+        $_table = new Table($name);
+    }
+
+    public function Insert($columns)
     {
         return $_table->Insert($columns);
     }
