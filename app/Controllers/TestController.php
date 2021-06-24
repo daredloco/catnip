@@ -2,7 +2,7 @@
 namespace App\Controllers;
 use \Catnip\View;
 
-class TestController{
+class TestController extends Controller{
 
     public static function index()
     {

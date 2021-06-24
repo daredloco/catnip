@@ -1,7 +1,8 @@
 <?PHP
 namespace App\Controllers;
 use \Catnip\View;
-class HomeController{
+
+class HomeController extends Controller{
 
     public static function index()
     {
