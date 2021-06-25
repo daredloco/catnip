@@ -1,7 +1,7 @@
 <?php
 /*
 Name: Database.php (modified pd0.php)
-Version: 06.12
+Version: 06.25
 Copyrights: Roman Wanner 2018-2021
 */
 namespace Catnip{
@@ -111,6 +111,15 @@ namespace Catnip{
 			return false;
 		}
 		
+		public static function ForeignCheck(bool $enabled)
+		{
+			if($enabled)
+			{
+				return self::query("SET FOREIGN_KEY_CHECKS=1;");
+			}
+			return self::query("SET FOREIGN_KEY_CHECKS=0;");
+		}
+
 		protected function replaceHTML($str)
 		{
 			$search = array('&', '<', '>', '€', '‘', '’', '“', '”', '–', '—', '¡', '¢','£', '¤', '¥', '¦', '§', '¨', '©', 'ª', '«', '¬', '®', '¯', '°', '±', '²', '³', '´', 'µ', '¶', '·', '¸', '¹', 'º', '»', '¼', '½', '¾', '¿', 'À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Æ', 'Ç', 'È', 'É', 'Ê', 'Ë', 'Ì', 'Í', 'Î', 'Ï', 'Ð', 'Ñ', 'Ò', 'Ó', 'Ô', 'Õ', 'Ö', '×', 'Ø', 'Ù', 'Ú', 'Û', 'Ü', 'Ý', 'Þ', 'ß', 'à', 'á', 'â', 'ã','ä', 'å', 'æ', 'ç', 'è', 'é', 'ê', 'ë', 'ì', 'í', 'î', 'ï', 'ð', 'ñ', 'ò', 'ó', 'ô', 'õ', 'ö', '÷', 'ø', 'ù', 'ú', 'û', 'ü', 'ý', 'þ', 'ÿ','Œ', 'œ', '‚', '„', '…', '™', '•', '˜');
