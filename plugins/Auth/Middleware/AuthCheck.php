@@ -2,6 +2,7 @@
 namespace Plugins\Auth\Middleware;
 
 use \Catnip\Route;
+use App\Models\User;
 
 class AuthCheck{
     public static function run()
