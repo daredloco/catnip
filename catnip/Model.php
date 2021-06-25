@@ -8,50 +8,50 @@ class Model{
 
     public static function Create($columns)
     {
-        self::Init();
-        self::$table->Insert($columns);
+        static::Init();
+        static::$table->Insert($columns);
     }
 
     public static function Find($id)
     {
-        self::Init();
-        $row = self::$table->First('id', '=', $id);
+        static::Init();
+        $row = static::$table->First('id', '=', $id);
         if(is_null($row))
         {
             return null;
         }
-        return self::MakeObject($row);
+        return static::MakeObject($row);
     }
 
     public static function First($where, $sign, $value)
     {
-        self::Init();
-        $row = self::$table->First($where, $sign, $value);
+        static::Init();
+        $row = static::$table->First($where, $sign, $value);
         if(is_null($row))
         {
             return null;
         }
-        return self::MakeObject($row);
+        return static::MakeObject($row);
     }
 
     public static function Where($where, $sign, $value)
     {
-        self::Init();
-        $row = self::$table->Where($where, $sign, $value);
+        static::Init();
+        $row = static::$table->Where($where, $sign, $value);
         if(is_null($row))
         {
             return null;
         }
-        return self::MakeObject($row);
+        return static::MakeObject($row);
     }
 
     public static function All()
     {
-        self::Init();
+        static::Init();
         $lst = [];
 
-        foreach (self::$table->All() as $method) {
-            $obj = self::MakeObject($method);
+        foreach (static::$table->All() as $method) {
+            $obj = static::MakeObject($method);
             array_push($lst, $obj);
         }
         return $lst;
@@ -59,24 +59,24 @@ class Model{
 
     public static function Exists($where, $sign, $value)
     {
-        self::Init();
-        return self::$table->Exists($where, $sign, $value);
+        static::Init();
+        return static::$table->Exists($where, $sign, $value);
     }
 
     public static function Count($where = null, $sign = null, $value = null)
     {
-        self::Init();
-        return self::$table->Count($where, $sign, $value);
+        static::Init();
+        return static::$table->Count($where, $sign, $value);
     }
 
     //PRIVATE FUNCTION
     private static function Init()
     {
-        if(!is_null(self::$table))
+        if(!is_null(static::$table))
         {
             return;
         }
-        self::$table = new \Catnip\Table(static::$tablename);
+        static::$table = new \Catnip\Table(static::$tablename);
     }
 
     //HELPER FUNCTIONS
@@ -92,8 +92,8 @@ class Model{
             }
         }
         $model->TestMe = function() use ($model){ return 'Hello '.$model->name.'!';};
-        $model->Update = function($changes) use ($model){ self::$table->Update($changes, 'id', '=', $model->id); };
-        $model->Delete = function() use ($model){ self::$table->Delete('id', '=', $model->id);};
+        $model->Update = function($changes) use ($model){ static::$table->Update($changes, 'id', '=', $model->id); };
+        $model->Delete = function() use ($model){ static::$table->Delete('id', '=', $model->id);};
         return $model;
     }
 
