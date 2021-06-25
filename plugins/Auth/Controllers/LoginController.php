@@ -50,6 +50,13 @@ class LoginController{
 
         Route::redirect(self::$successroute);
     }
+
+    public static function logout()
+    {
+        unset($_SESSION["user"]);
+
+        Route::redirect();
+    }
     
 }
 ?>
