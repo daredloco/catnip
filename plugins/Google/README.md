@@ -71,5 +71,5 @@ $newcontent = preg_replace("/@ReCallback\((.*)\)/", "<?PHP \Plugins\Google\Recap
 * Use ```\Plugins\Google\Recaptcha::Callback($parentform)``` to set callback:
 ```php
 <form id="parent_form"></form>
-\Plugins\Google\Recaptcha::Callback("parent_form");
+\Plugins\Google\Recaptcha::Callback("parent_form", "alert('You are a bot!');");
 ```

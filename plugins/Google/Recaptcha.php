@@ -14,17 +14,17 @@ class Recaptcha{
         data-action="submit">'.$text.'</button>';
     }
 
-    public static function Callback($parentform)
+    public static function Callback($parentform, $notpassed = "alert('Challenge didnt pass!');")
     {
         echo "<script>
         function onSubmit(token) {
           var response = grecaptcha.getResponse();
           const obj = JSON.parse(response);
-          if(obj.score > ".\GOOGLE_CAPTCHA_MINSCORE.")
+          if(obj.score > ".\GOOGLE_CAPTCHA_MINSCORE." && obj.success)
           {
                 document.getElementById('".$parentform."').submit();
           }else{
-              //DO SOMETHING ELSE IF CHALLENGE PASSED
+              ".$notpassed."
           }
         }
         </script>";
