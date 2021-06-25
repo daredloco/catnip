@@ -9,7 +9,7 @@ class LoginController{
     {
         if(isset($_SESSION["user"]))
         {
-            View::Render("home");
+            Route::redirect('middleware');
             return;
         }
         View::RenderFromFile(dirname(__DIR__).'/Views/Login.php', "login", [], false);
