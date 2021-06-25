@@ -16,6 +16,7 @@ It's size without plugins and locito (command-line tool) is less than 100kb.
 * SEO => A plugin that helps you with your SEO (Todo)
 * Uploader => A plugin that helps you with Fileuploads (Todo)
 * Blog => A plugin that helps you create your own blog (Todo)
+* CMS => Content Management System to manage website without (much) coding (Todo)
 
 **Warning**: Plugins may need other dependencies!
 
