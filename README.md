@@ -2,7 +2,7 @@
  
 ### About
 The Catnip Framework is a PHP MVC Framework with a focus on simplicity, modularity and a small size.
-It's size without plugins and locito (command-line tool) is less than 500kb.
+It's size without plugins and locito (command-line tool) is less than 100kb.
 
 ### Dependencies
 * PHP 7+
