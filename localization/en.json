@@ -27,6 +27,10 @@
         {
             "key": "license",
             "value": "License"
+        },
+        {
+            "key": "replace",
+            "value": "This is a {REPLACE_ME} test!"
         }
     ]
 }

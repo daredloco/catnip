@@ -55,14 +55,7 @@ namespace Catnip{
             }
             Loca::Load($userlanguage);
 
-            //Start Cachefunction and Localization
-            if($cache)
-            {
-                $content = "<?PHP \\Catnip\\Loca::StartPage(); \\Catnip\\Cache::CacheStart(); ?>".$content;
-            }else{
-                $content = "<?PHP \\Catnip\\Loca::StartPage(); ?>".$content;
-            }
-    
+            //Start Cachefunction
             if($cache)
             {
                 $content = "<?PHP \\Catnip\\Cache::CacheStart(); ?>".$content;
@@ -102,15 +95,9 @@ namespace Catnip{
 
             //Handle Loca
             $newcontent = preg_replace("/__\((.*)\)/", "<?PHP echo \\Catnip\\Loca::Trans('$1'); ?>", $newcontent);
+            $newcontent = preg_replace("/@loca\((.*)\)(.*)@endloca/", "<?PHP echo \\Catnip\\Loca::Trans('$1','$2'); ?>", $newcontent);
 
-            //End Cachefunction and Localization
-            if($cache)
-            {
-                $newcontent .= "<?PHP \\Catnip\\Cache::CacheEnd();  \\Catnip\\Loca::EndPage(); ?>";
-            }else{
-                $newcontent .= "<?PHP \\Catnip\\Loca::EndPage(); ?>";
-            }
-
+            //End Cachefunction
             if($cache)
             {
                  $newcontent .= "<?PHP \\Catnip\\Cache::CacheEnd(); ?>";

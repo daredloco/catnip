@@ -37,15 +37,28 @@ namespace Catnip{
             }
         }
 
-        public static function Trans($key, array $replacements = null)
+        public static function Trans($key, $replacements = null)
         {
             if(array_key_exists($key, self::$dict)){
                 if(is_null($replacements))
                 {
                     return self::$dict[$key];
                 }
-                //Replace values from $replacements ("{NAME}" => "Max Mustermann")
                 $returnkey = self::$dict[$key];
+
+                //If string it needs to be $replacements = "{key1}-value1|{key2}-value2"
+                if(!is_array($replacements))
+                {
+                    $rep = explode('|', $replacements);
+                    $reps = [];
+                    foreach ($rep as $r) {
+                        $splits = explode('-', $r, 2);
+                        $reps[trim($splits[0])] = trim($splits[1]);
+                    }
+                    $replacements = $reps;
+                }
+
+                //Replace values from $replacements ("{NAME}" => "Max Mustermann")
                 foreach ($replacements as $rkey => $rvalue) {
                     $returnkey = str_replace($rkey, $rvalue, $returnkey);
                 }
