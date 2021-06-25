@@ -9,7 +9,7 @@ use Symfony\Component\Console\Input\ArrayInput;
 class MakeAll extends Command
 {
     protected $commandName = 'make:all';
-    protected $commandDescription = "Creates a new Controller, Model and Table";
+    protected $commandDescription = "Creates a new Controller, Model, Table and Seeder";
 
     protected $commandArgumentName = "name";
     protected $commandArgumentDescription = "Whats the name of all?";
@@ -33,12 +33,14 @@ class MakeAll extends Command
         $commandModel = $this->getApplication()->find('make:model');
         $commandTable = $this->getApplication()->find('make:table');
         $commandController = $this->getApplication()->find('make:controller');
-        
+        $commandSeeder = $this->getApplication()->find('make:seeder');
+
         $arguments = ["name" => $name];
         $inputarray = new ArrayInput($arguments);
         $commandModel->run($inputarray, $output);
         $commandTable->run($inputarray, $output);
         $commandController->run($inputarray, $output);
+        $commandSeeder->run($inputarray, $output);
         return 1;
     }
 }

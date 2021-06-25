@@ -19,6 +19,7 @@ $application->add(new ClearTemp());
 $application->add(new ClearCache());
 $application->add(new ClearAll());
 $application->add(new PluginsUpdate());
+$application->add(new MakeSeeder());
 
 $application->run();
 ?>

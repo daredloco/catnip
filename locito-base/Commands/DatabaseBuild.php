@@ -13,6 +13,9 @@ class DatabaseBuild extends Command
     protected $commandOptionName = "fresh";
     protected $commandOptionDescription = 'Deletes the old database before creating the new one';  
 
+    protected $commandSeedName = "seed";
+    protected $commandSeedDescription = "Seeds the database after adding the tables";
+
     protected function configure()
     {
         $this
@@ -23,6 +26,12 @@ class DatabaseBuild extends Command
                 null,
                 InputOption::VALUE_NONE,
                 $this->commandOptionDescription
+             )
+             ->addOption(
+                 $this->commandSeedName,
+                 null,
+                 InputOption::VALUE_NONE,
+                 $this->commandSeedDescription
              )
         ;
     }
@@ -46,6 +55,16 @@ class DatabaseBuild extends Command
         \Database\Create::Do();
         $eTime = microtime(true);
         $output->writeln("Database built! (".($eTime-$sTime)."ms)");
+
+        if ($input->getOption($this->commandSeedName)) {
+            $output->writeln("Seeding Database");
+            $sTime = microtime(true);
+            $location = dirname(__DIR__, 2).'/database/Seed.php';
+            require_once($location);
+            \Database\Seed::Do();
+            $eTime = microtime(true);
+            $output->writeln("Database seeded! (".($eTime-$sTime)."ms)");
+        }
         return 1;
     }
 }
