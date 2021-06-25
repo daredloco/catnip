@@ -71,13 +71,13 @@ With Locito:
 * Add those lines before the end of the ```Compile``` function in ```\catnip\View.php``` to extend the Templating System (MAKE A BACKUP!):
 ```php
 //Handle AUTH plugin 
-$newcontent = preg_replace("/@hasRank\((.*)\)/", "<?PHP if(\Plugins\Ranks\Scripts\Ranks::UserHasRank(\Plugins\Ranks\Models\Rank::FindByName($1))){?>", $content;
+$newcontent = preg_replace("/@hasRank\((.*)\)/", "<?PHP if(\Plugins\Ranks\Scripts\Ranks::UserHasRank(\Plugins\Ranks\Models\Rank::FindByName($1))){?>", $content);
 $newcontent = preg_replace("/@endHasRank/", "<?PHP } ?>", $content);
 
-$newcontent = preg_replace("/@hasHigherRank\((.*)\)/", "<?PHP if(\Plugins\Ranks\Scripts\Ranks::UserHasHigherRank(\Plugins\Ranks\Models\Rank::FindByName($1))){?>", $content;
+$newcontent = preg_replace("/@hasHigherRank\((.*)\)/", "<?PHP if(\Plugins\Ranks\Scripts\Ranks::UserHasHigherRank(\Plugins\Ranks\Models\Rank::FindByName($1))){?>", $content);
 $newcontent = preg_replace("/@endHasHigherRank/", "<?PHP } ?>", $content);
 
-$newcontent = preg_replace("/@hasHigherScore\((.*)\)/", "<?PHP if(\Plugins\Ranks\Scripts\Ranks::UserHasHigherScore($1)){?>", $content;
+$newcontent = preg_replace("/@hasHigherScore\((.*)\)/", "<?PHP if(\Plugins\Ranks\Scripts\Ranks::UserHasHigherScore($1)){?>", $content);
 $newcontent = preg_replace("/@endHasHigherScore/", "<?PHP } ?>", $content);
 
 
