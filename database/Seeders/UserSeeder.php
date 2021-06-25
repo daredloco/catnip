@@ -6,9 +6,11 @@ class UserSeeder{
 
     public static function run()
     {
-        // User::Create([
-        //     //Add Content here
-        // ]);
+        User::Create([
+            'name' => 'Admin',
+            'email' => 'admin@server.com',
+            'password' => \Catnip\Helpers\Hasher::Hash("password")
+        ]);
     }
 }
 ?>
