@@ -118,10 +118,19 @@ namespace Catnip{
   
             //Check for middleware
             foreach ($route['middleware'] as $middleware) {
-                if(call_user_func_array($middleware["function"], $middleware["args"]) === FALSE)
+                //Find the Middleware in the App\Middleware\Handler.php file
+                if(isset(\App\Middleware\Handler::$middleware[$middleware]))
                 {
-                  call_user_func_array(self::$noRights, Array($path,$method));
+                  if(call_user_func_array(\App\Middleware\Handler::$middleware[$middleware], []) === FALSE)
+                  {
+                    call_user_func_array(self::$noRights, Array($path,$method));
+                  }
                 }
+
+                // if(call_user_func_array($middleware["function"], $middleware["args"]) === FALSE)
+                // {
+                //   call_user_func_array(self::$noRights, Array($path,$method));
+                // }
             }
   
             call_user_func_array($route['function'], $matches);
