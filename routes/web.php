@@ -8,7 +8,7 @@ Route::get('/',function(){
 
 Route::get('/test/([a-zA-Z0-9_-]*)', function($var1){
     \App\Controllers\TestController::index($var1);
-});
+}, ['authcheck']);
 
 Route::get('/middleware', function(){ echo 'Hello world!';}, ['authcheck']);
 
