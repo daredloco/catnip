@@ -4,9 +4,9 @@ use \Catnip\View;
 
 class TestController extends Controller{
 
-    public static function index()
+    public static function index($var1)
     {
-        echo "This is a test!";
+        echo "Variable: ".$var1;
     }
     
 }
