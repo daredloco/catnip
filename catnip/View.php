@@ -63,6 +63,11 @@ namespace Catnip{
                 $content = "<?PHP \\Catnip\\Loca::StartPage(); ?>".$content;
             }
     
+            if($cache)
+            {
+                $content = "<?PHP \\Catnip\\Cache::CacheStart(); ?>".$content;
+            }
+
             //Handle @if, @elseif, @else and @endif
             $newcontent = preg_replace("/@if\((.*)\)/", "<?PHP if($1){ ?>", $content);
             $newcontent = preg_replace("/@elseif\((.*)\)/", "<?PHP }elseif($1){ ?>", $newcontent);
@@ -95,6 +100,9 @@ namespace Catnip{
             //Handle Tokens
             $newcontent = preg_replace("/@formtoken/", "<?PHP \\Catnip\\Helpers\\Tokenizer::FormToken(); ?>" ,$newcontent);
 
+            //Handle Loca
+            $newcontent = preg_replace("/__\((.*)\)/", "<?PHP echo \\Catnip\\Loca::Trans('$1'); ?>", $newcontent);
+
             //End Cachefunction and Localization
             if($cache)
             {
@@ -102,7 +110,12 @@ namespace Catnip{
             }else{
                 $newcontent .= "<?PHP \\Catnip\\Loca::EndPage(); ?>";
             }
-    
+
+            if($cache)
+            {
+                 $newcontent .= "<?PHP \\Catnip\\Cache::CacheEnd(); ?>";
+            }
+
             return $newcontent;
         }
     }
