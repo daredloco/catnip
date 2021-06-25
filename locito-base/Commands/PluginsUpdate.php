@@ -28,7 +28,7 @@ class PluginsUpdate extends Command
         self::listFolderFiles(dirname(__DIR__, 2).DIRECTORY_SEPARATOR.'plugins', $output);
         $eTime = microtime(true);
 
-        $output->writeln("All plugins updated after ".round($eTime-$sTime,2)."ms");
+        $output->writeln("All plugins updated after ".round($eTime-$sTime,2)."s");
         return 0;
     }
 
@@ -63,7 +63,7 @@ class PluginsUpdate extends Command
                         throw new ProcessFailedException($process);
                     }else{
                         $eTime = microtime(true);
-                        $output->writeln("Plugin \"".$dirstr."\" updated (".round($eTime-$sTime,2)."ms)");
+                        $output->writeln("Plugin \"".$dirstr."\" updated (".round($eTime-$sTime,2)."s)");
                     }
                 } 
             }

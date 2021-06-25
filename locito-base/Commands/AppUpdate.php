@@ -7,9 +7,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 
-class AppInstall extends Command
+class AppUpdate extends Command
 {
-    protected $commandName = 'app:install';
+    protected $commandName = 'app:update';
     protected $commandDescription = "Update packages";   
 
     protected function configure()
@@ -22,22 +22,29 @@ class AppInstall extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $process = new Process(["composer","install"]);
+        $begTime = microtime(true);
+        $sTime = microtime(true);
+        $process = new Process(["composer","update"]);
         $process->setWorkingDirectory(getcwd());
         $process->run();
         if (!$process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
-        $output->writeln("Root composer OK");
+        $eTime = microtime(true);
+        $output->writeln("Root composer OK (".round($eTime-$sTime, 2)."s)");
         
+        $sTime = microtime(true);
         $locitodir = getcwd().DIRECTORY_SEPARATOR.'locito-base';
         $process->setWorkingDirectory($locitodir);
         $process->run();
         if (!$process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
-        $output->writeln("Locito composer OK");
-        $output->writeln("Packages installed successfuly!");
+        $eTime = microtime(true);
+        $output->writeln("Locito composer OK (".round($eTime-$sTime, 2)."s)");
+
+        $endTime = microtime(true);
+        $output->writeln("Packages updated successfuly! (".round($endTime-$begTime, 2)."s)");
 
         return 0;
     }
