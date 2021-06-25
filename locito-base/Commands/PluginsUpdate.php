@@ -22,13 +22,21 @@ class PluginsUpdate extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $output->writeln("Updating all Plugins. This can take some while, depending on your machine, internet and amount of plugins!");
+
+        $sTime = microtime(true);
         self::listFolderFiles(dirname(__DIR__, 2).DIRECTORY_SEPARATOR.'plugins', $output);
+        $eTime = microtime(true);
+
+        $output->writeln("All plugins updated after ".round($eTime-$sTime,2)."ms");
         return 0;
     }
 
     private static function listFolderFiles($dir, OutputInterface $output)
     {
         $ffs = scandir($dir);
+
+        $dirstr = str_replace(dirname(__DIR__, 2).DIRECTORY_SEPARATOR.'plugins'.DIRECTORY_SEPARATOR,"",$dir);
 
         unset($ffs[array_search('.', $ffs, true)]);
         unset($ffs[array_search('..', $ffs, true)]);
@@ -41,20 +49,21 @@ class PluginsUpdate extends Command
                 if($ff != "vendor")
                 {
                     self::listFolderFiles($dir.DIRECTORY_SEPARATOR.$ff, $output);
-                }
-                
+                }   
             }
             else{
                 if($ff == "composer.json")
                 {
-                    $output->writeln("Start updating ".$dir."...");
-                    $process = new Process(["composer","install"]);
+                    $sTime = microtime(true);
+                    $output->writeln("Start updating Plugin \"".$dirstr."\"");
+                    $process = new Process(["composer","update"]);
                     $process->setWorkingDirectory($dir);
                     $process->run();
                     if (!$process->isSuccessful()) {
                         throw new ProcessFailedException($process);
                     }else{
-                        $output->writeln($dir." updated!");
+                        $eTime = microtime(true);
+                        $output->writeln("Plugin \"".$dirstr."\" updated (".round($eTime-$sTime,2)."ms)");
                     }
                 } 
             }
