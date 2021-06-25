@@ -42,9 +42,8 @@ class RegisterController{
             View::RenderFromFile(dirname(__DIR__).'/Views/Register.php', "register", ['message' => $message], false);
             return;
         }
-        $model = new User();
-
-        $model->Insert([
+        
+        User::Create([
             'name' => $username,
             'email' => $email,
             'password' => \Catnip\Helpers\Hasher::Hash($password)
