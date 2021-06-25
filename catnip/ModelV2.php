@@ -4,6 +4,7 @@ namespace Catnip;
 class ModelV2{
     protected static $table;
     protected static $tablename;
+    protected static $fillables = [];
 
     public static function Find($id)
     {
@@ -52,11 +53,20 @@ class ModelV2{
     private static function MakeObject($array)
     {
         $model = new ModelV2();
-        foreach ($array as $key => $value) {
-        $model->{$key} = $value;   
+        // foreach ($array as $key => $value) {
+        // $model->{$key} = $value;
+        // }
+        $model->id = $array["id"];
+        foreach (static::$fillables as $fillable)
+        {
+            if(isset($array[$fillable]))
+            {
+                $model->{$fillable} = $array[$fillable];
+            }
         }
-        $model->TestMe = function(){ return 'Hello World!';};
-
+        $model->TestMe = function() use ($model){ return 'Hello '.$model->name.'!';};
+        $model->Update = function($changes) use ($model){ self::$table->Update($changes, 'id', '=', $model->id); };
+        $model->Delete = function() use ($model){ };
         return $model;
     }
 
