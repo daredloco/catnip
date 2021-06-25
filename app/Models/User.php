@@ -1,13 +1,22 @@
 <?PHP
 namespace App\Models;
+class User extends \Catnip\Model{
+    protected static $tablename = "users";
 
-use \Catnip\Model;
+    protected static $fillables = [
+        'name',
+        'email',
+        'password'
+    ];
 
-class User extends Model{
-    
-    public function __construct()
+    public static function FindByName($name)
     {
-        $this->Init('users');
+        return User::First('name', '=', $name);
+    }
+
+    public static function FindByEmail($email)
+    {
+        return User::First('email', '=', $email);
     }
 }
 ?>

@@ -1,41 +1,110 @@
 <?PHP
 namespace Catnip;
+
 class Model{
-    private $_table;
+    protected static $table;
+    protected static $tablename;
+    protected static $fillables = [];
 
-    public function Init($name)
+    public static function Create($columns)
     {
-        $_table = new Table($name);
+        self::Init();
+        self::$table->Insert($columns);
     }
 
-    public function Insert($columns)
+    public static function Find($id)
     {
-        return $_table->Insert($columns);
+        self::Init();
+        $row = self::$table->First('id', '=', $id);
+        if(is_null($row))
+        {
+            return null;
+        }
+        return self::MakeObject($row);
     }
 
-    public function Update($columns, $where, $sign, $result)
+    public static function First($where, $sign, $value)
     {
-        return $_table->Update($columns, $where, $sign, $value);
+        self::Init();
+        $row = self::$table->First($where, $sign, $value);
+        if(is_null($row))
+        {
+            return null;
+        }
+        return self::MakeObject($row);
     }
 
-    public function Find($id)
+    public static function Where($where, $sign, $value)
     {
-        return $_table->Find($id);
+        self::Init();
+        $row = self::$table->Where($where, $sign, $value);
+        if(is_null($row))
+        {
+            return null;
+        }
+        return self::MakeObject($row);
     }
 
-    public function Where($column, $sign, $value)
+    public static function All()
     {
-        return $_table->Where($column, $sign, $value);
+        self::Init();
+        $lst = [];
+
+        foreach (self::$table->All() as $method) {
+            $obj = self::MakeObject($method);
+            array_push($lst, $obj);
+        }
+        return $lst;
     }
 
-    public function First($where, $sign, $value)
+    public static function Exists($where, $sign, $value)
     {
-        return $_table->First($where, $sign, $value);
+        self::Init();
+        return self::$table->Exists($where, $sign, $value);
     }
 
-    public function All()
+    public static function Count($where = null, $sign = null, $value = null)
     {
-        return $_table->All();
+        self::Init();
+        return self::$table->Count($where, $sign, $value);
+    }
+
+    //PRIVATE FUNCTION
+    private static function Init()
+    {
+        if(!is_null(self::$table))
+        {
+            return;
+        }
+        self::$table = new \Catnip\Table(static::$tablename);
+    }
+
+    //HELPER FUNCTIONS
+    private static function MakeObject($array)
+    {
+        $model = new Model();
+        $model->id = $array["id"];
+        foreach (static::$fillables as $fillable)
+        {
+            if(isset($array[$fillable]))
+            {
+                $model->{$fillable} = $array[$fillable];
+            }
+        }
+        $model->TestMe = function() use ($model){ return 'Hello '.$model->name.'!';};
+        $model->Update = function($changes) use ($model){ self::$table->Update($changes, 'id', '=', $model->id); };
+        $model->Delete = function() use ($model){ self::$table->Delete('id', '=', $model->id);};
+        return $model;
+    }
+
+    public function __call($closure, $args)
+    {
+        return call_user_func_array($this->{$closure}->bindTo($this),$args);
+    }
+
+    public function __toString()
+    {
+        return call_user_func($this->{"__toString"}->bindTo($this));
     }
 }
 ?>

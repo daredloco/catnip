@@ -92,6 +92,9 @@ namespace Catnip{
             //Handle includes
             $newcontent = preg_replace("/@include\((.*)\)/", "<?PHP include('".dirname(__DIR__).'/views/'."$1.php'); ?>", $newcontent);
     
+            //Handle Tokens
+            $newcontent = preg_replace("/@formtoken/", "<?PHP \\Catnip\\Helpers\\Tokenizer::FormToken(); ?>" ,$newcontent);
+
             //End Cachefunction and Localization
             if($cache)
             {

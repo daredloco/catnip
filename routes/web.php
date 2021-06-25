@@ -2,22 +2,18 @@
 use \Catnip\Route;
 
 // ROUTING
-Route::add('/',function(){
+Route::get('/',function(){
     \App\Controllers\HomeController::index();
 });
 
-Route::add('/test', function(){
-    \App\Controllers\TestController::index();
+Route::get('/test/([a-zA-Z0-9_-]*)', function($var1){
+    \App\Controllers\TestController::index($var1);
 });
 
-<<<<<<< Updated upstream
-=======
-//Route::get('/middleware', function(){ echo 'Hello world!';}, [["function" => "\\Plugins\\Auth\\Middleware\\AuthCheck::run", "args" => []]]);
 Route::get('/middleware', function(){ echo 'Hello world!';}, ['authcheck']);
 
 //PLUGINS
 require_once('../plugins/Auth/Routes/web.php'); //Loads the Auth Plugin routes
 
->>>>>>> Stashed changes
 Route::run('/');
 ?>
