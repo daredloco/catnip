@@ -1,3 +1,6 @@
 <?PHP
 const GOOGLE_DRIVE_ID = "";
+const GOOGLE_MEASUREMENT_ID = "";
+const GOOGLE_CAPTCHA_KEY = "";
+const GOOGLE_CAPTCHA_MINSCORE = 0.5;
 ?>
