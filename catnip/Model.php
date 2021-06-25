@@ -82,6 +82,10 @@ class Model{
     //HELPER FUNCTIONS
     private static function MakeObject($array)
     {
+        static::Init();
+
+        $sTable = static::$table;
+
         $model = new Model();
         $model->id = $array["id"];
         foreach (static::$fillables as $fillable)
@@ -91,9 +95,9 @@ class Model{
                 $model->{$fillable} = $array[$fillable];
             }
         }
-        $model->TestMe = function() use ($model){ return 'Hello '.$model->name.'!';};
-        $model->Update = function($changes) use ($model){ static::$table->Update($changes, 'id', '=', $model->id); };
-        $model->Delete = function() use ($model){ static::$table->Delete('id', '=', $model->id);};
+        $model->TestMe = function() use ($model, $sTable){ return 'Hello '.$model->name.'!';};
+        $model->Update = function($changes) use ($model, $sTable){ $sTable->Update($changes, 'id', '=', $model->id); };
+        $model->Delete = function() use ($model, $sTable){ $sTable->Delete('id', '=', $model->id);};
         return $model;
     }
 
