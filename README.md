@@ -10,12 +10,14 @@ It's size without plugins and locito (command-line tool) is less than 500kb.
 
 ### Plugins (Optional)
 * [Auth](https://github.com/daredloco/catnip/tree/main/plugins/Auth) => A plugin that handles login/registration/logout
-* [Google](https://github.com/daredloco/catnip/tree/main/plugins/Google) => A plugin that handles interaction with Google (work in progress)
+* [Google\Drive](https://github.com/daredloco/catnip/tree/main/plugins/Google) => A plugin that handles interaction with Google\Drive (work in progress)
+* Google\Recaptcha => A plugin that handles Recaptcha (Todo)
 * Ranks => A plugin that helps you handle User ranks/permissions (Todo)
 * SEO => A plugin that helps you with your SEO (Todo)
 * Uploader => A plugin that helps you with Fileuploads (Todo)
 * Blog => A plugin that helps you create your own blog (Todo)
-**Warning**: Plugins maybe need other dependencies!
+
+**Warning**: Plugins may need other dependencies!
 
 ### License
 At the moment the Catnip Framework is under a restrictive license, but that will change in the future!
