@@ -12,3 +12,7 @@
         function(){ echo 'Hello world!';},
         ['authcheck']
         );
+
+4) Edit the Login and Register Views to add your own design.
+
+5) Change $successroute inside .\Controllers\LoginController.php to the url you want to redirect the user after login or if logged in

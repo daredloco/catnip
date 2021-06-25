@@ -5,11 +5,13 @@ use \App\Models\User;
 use \Catnip\Route;
 
 class LoginController{
+    private static $successroute = 'middleware'; //The redirect called if the user is logged in
+
     public static function index()
     {
         if(isset($_SESSION["user"]))
         {
-            Route::redirect('middleware');
+            Route::redirect(self::$successroute);
             return;
         }
         View::RenderFromFile(dirname(__DIR__).'/Views/Login.php', "login", [], false);
@@ -28,7 +30,7 @@ class LoginController{
         
         if(isset($_SESSION["user"]))
         {
-            Route::redirect();
+            Route::redirect(self::$successroute);
             return;
         }
 
@@ -46,7 +48,7 @@ class LoginController{
         }
         $_SESSION["user"] = $user->id;
 
-        Route::redirect('middleware');
+        Route::redirect(self::$successroute);
     }
     
 }
