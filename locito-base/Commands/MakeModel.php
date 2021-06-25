@@ -30,78 +30,17 @@ class MakeModel extends Command
     {
         $name = $input->getArgument($this->commandArgumentName);
         $dbname = strtolower($name).'s';
-        $location = dirname(__DIR__, 4).'/Models/'.$name.'.php';
+        $location = dirname(__DIR__, 2).'/app/Models/'.$name.'.php';
         
         $body = 
 '<?PHP
-#################################################################################################
-#                                    IMPORTANT                                                 
-#                                                                                              
-#          Add "include("../Models/'.$name.'.php");" to the "\public\index.php" file!           
-#                                                                                              
-#                                                                                              
-#################################################################################################
+namespace App\Models;
+class '.$name.' extends \Catnip\Model{
+    protected static $tablename = "'.strtolower($name).'s";
 
-namespace Models{
-    class '.$name.' {
-        public $id;
-        public $created_at;
-
-        public function __construct($id)
-        {
-            $table = new \CatNip\Templates\Table("'.$dbname.'");
-            $tmp = $table->First("id", "=", $id);
-            if(is_null($tmp))
-            {
-                return;
-            }
-            $this->id = $tmp["id"];
-            $this->created_at = $tmp["created_at"];
-        }
-
-        public function Update()
-        {
-            $table = new \CatNip\Templates\Table("'.$dbname.'");
-            $table->Update([
-                
-            ],"id", "=", $this->id);
-        }
-
-        public static function Create($name, $password, $email)
-        {
-            $table = new \CatNip\Templates\Table("'.$dbname.'");
-            $table->Insert([
-                //Enter Content Here
-                //"name" => "Max Hardcore"
-            ]);
-
-            return null;
-            //Add a unique value here like name or such and replace return null; with it!
-            //return $table->First("name", "=", $name);
-        }
-
-        public static function Find($id)
-        {
-            $table = new \CatNip\Templates\Table("'.$dbname.'");
-            $tmp = $table->First("id", "=", $id);
-            if(!is_null($tmp))
-            {
-                return new '.$name.'($tmp["id"]);
-            }
-            return null;
-        }
-
-        public static function All()
-        {
-            $table = new \CatNip\Templates\Table("'.$dbname.'");
-            $models = [];
-            foreach ($table->All() as $tModel) {
-                $model = new '.$name.'($tModel["id"]);
-                array_push($models, $model);
-            }
-            return $models;
-        }
-    }
+    protected static $fillables = [
+        //"name",
+    ];
 }
 ?>';
 
