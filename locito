@@ -15,6 +15,8 @@ $application->add(new MakeLocalization());
 $application->add(new MakeView());
 $application->add(new DatabaseBuild());
 $application->add(new AppInstall());
-
+$application->add(new ClearTemp());
+$application->add(new ClearCache());
+$application->add(new ClearAll());
 $application->run();
 ?>
