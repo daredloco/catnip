@@ -11,6 +11,13 @@ class AuthCheck{
             Route::redirect('login');
             exit();
         }
+        $usr = User::Find($_SESSION["user"]);
+        if(is_null($usr))
+        {
+            unlink($_SESSION["user"]);
+            Route::redirect('login');
+            exit();
+        }
     }
 }
 ?>
