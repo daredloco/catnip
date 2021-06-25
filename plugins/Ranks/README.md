@@ -74,8 +74,8 @@ With Locito:
 $newcontent = preg_replace("/@hasRank\((.*)\)/", "<?PHP if(\Plugins\Ranks\Scripts\Ranks::UserHasRank(\Plugins\Ranks\Models\Rank::FindByName($1))){?>", $content;
 $newcontent = preg_replace("/@endHasRank/", "<?PHP } ?>", $content);
 
-$newcontent = preg_replace("/@hasHigerRank\((.*)\)/", "<?PHP if(\Plugins\Ranks\Scripts\Ranks::UserHasHigherRank(\Plugins\Ranks\Models\Rank::FindByName($1))){?>", $content;
-$newcontent = preg_replace("/@endHasHigerRank/", "<?PHP } ?>", $content);
+$newcontent = preg_replace("/@hasHigherRank\((.*)\)/", "<?PHP if(\Plugins\Ranks\Scripts\Ranks::UserHasHigherRank(\Plugins\Ranks\Models\Rank::FindByName($1))){?>", $content;
+$newcontent = preg_replace("/@endHasHigherRank/", "<?PHP } ?>", $content);
 
 $newcontent = preg_replace("/@hasHigherScore\((.*)\)/", "<?PHP if(\Plugins\Ranks\Scripts\Ranks::UserHasHigherScore($1)){?>", $content;
 $newcontent = preg_replace("/@endHasHigherScore/", "<?PHP } ?>", $content);
