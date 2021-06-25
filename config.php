@@ -19,5 +19,6 @@ const LOCA_DEFAULT = "en"; //Default Language for the Localization
 
 //FILESYSTEM CONFIGURATION
 const FS_DIRECTORY = __DIR__.'/public/uploads'; //The Upload Directory
+const FS_PRIVATEDIRECTORY = __DIR__.'/uploads'; //The Private Directory
 const FS_MAXSIZE = 5000 * 1000; //Max. Filesize for an upload (5MB)
 ?>
