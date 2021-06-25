@@ -11,10 +11,10 @@ class Rank extends \Catnip\Model{
 
     public static function FindByName($name)
     {
-        return Rank::Where('name', '=', $name);
+        return Rank::First('name', '=', $name);
     }
 
-    public static function IsHigher(Rank $rankA, Rank $rankB)
+    public static function IsHigher($rankA, $rankB)
     {
         if($rankA->score < $rankB->score)
         {
