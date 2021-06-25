@@ -111,13 +111,21 @@ namespace Catnip{
 			return false;
 		}
 		
-		public static function ForeignCheck(bool $enabled)
-		{
+		public static function foreignCheck(bool $enabled)
+		{			
+			$db = new \PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset=utf8', DB_USER, DB_PASS, array(\PDO::ATTR_EMULATE_PREPARES => false, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
+
 			if($enabled)
 			{
-				return self::query("SET FOREIGN_KEY_CHECKS=1;");
+				$query = "SET GLOBAL FOREIGN_KEY_CHECKS=1;";
+			}else{
+				$query = "SET GLOBAL FOREIGN_KEY_CHECKS=0;";
 			}
-			return self::query("SET FOREIGN_KEY_CHECKS=0;");
+
+			$stmt = $db->prepare($query);
+			$stmt->execute();
+			
+			return $stmt->fetchAll();
 		}
 
 		protected function replaceHTML($str)
