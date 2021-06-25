@@ -6,6 +6,12 @@ class ModelV2{
     protected static $tablename;
     protected static $fillables = [];
 
+    public static function Create($columns)
+    {
+        self::Init();
+        self::$table->Insert($columns);
+    }
+
     public static function Find($id)
     {
         self::Init();
@@ -53,9 +59,6 @@ class ModelV2{
     private static function MakeObject($array)
     {
         $model = new ModelV2();
-        // foreach ($array as $key => $value) {
-        // $model->{$key} = $value;
-        // }
         $model->id = $array["id"];
         foreach (static::$fillables as $fillable)
         {
@@ -66,7 +69,7 @@ class ModelV2{
         }
         $model->TestMe = function() use ($model){ return 'Hello '.$model->name.'!';};
         $model->Update = function($changes) use ($model){ self::$table->Update($changes, 'id', '=', $model->id); };
-        $model->Delete = function() use ($model){ };
+        $model->Delete = function() use ($model){ self::$table->Delete('id', '=', $model->id);};
         return $model;
     }
 
