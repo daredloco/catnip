@@ -126,11 +126,6 @@ namespace Catnip{
                     call_user_func_array(self::$noRights, Array($path,$method));
                   }
                 }
-
-                // if(call_user_func_array($middleware["function"], $middleware["args"]) === FALSE)
-                // {
-                //   call_user_func_array(self::$noRights, Array($path,$method));
-                // }
             }
   
             call_user_func_array($route['function'], $matches);
