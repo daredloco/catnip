@@ -18,5 +18,6 @@ $application->add(new AppInstall());
 $application->add(new ClearTemp());
 $application->add(new ClearCache());
 $application->add(new ClearAll());
+
 $application->run();
 ?>

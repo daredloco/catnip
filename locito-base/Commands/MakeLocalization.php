@@ -46,6 +46,7 @@ class MakeLocalization extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        require_once(dirname(__DIR__, 2).'/config.php');
         $key = $input->getArgument($this->commandArgumentKey);
         $english_name = $input->getArgument($this->commandArgumentEnglish);
         $local_name = $input->getArgument($this->commandArgumentLocal);

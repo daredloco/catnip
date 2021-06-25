@@ -30,7 +30,7 @@ class MakeTable extends Command
     {
         $name = $input->getArgument($this->commandArgumentName);
 
-        $location = dirname(__DIR__, 4).'/Database/Tables/'.$name.'Table.php';
+        $location = dirname(__DIR__, 2).'/database/Tables/'.$name.'Table.php';
 
         $body = 
 '<?PHP
@@ -41,24 +41,27 @@ class MakeTable extends Command
 #          
 #############################################################################################
 
-    namespace Database\Tables{
-        class '.$name.'Table{
-            public static function build()
-            {
-                $table = new \CatNip\Templates\Table("'.strtolower($name).'s", [
-                    "id" => "INT|AUTO_INCREMENT|PRIMARY KEY",
-                    "created_at" => "TIMESTAMP|DEFAULT|CURRENT_TIMESTAMP"
-                ]);
-                $table->Create();
-            }
-            
-            public static function destroy()
-            {
-                $table = new \CatNip\Templates\Table("'.strtolower($name).'s");
-                $table->Drop();
-            }
+namespace Database\Tables{
+
+    use \Catnip\Table;
+
+    class '.$name.'Table{
+        public static function build()
+        {
+            $table = new Table("'.strtolower($name).'s", [
+                "id" => "INT|AUTO_INCREMENT|PRIMARY KEY",
+                "created_at" => "TIMESTAMP|DEFAULT|CURRENT_TIMESTAMP"
+            ]);
+            $table->Create();
+        }
+
+        public static function destroy()
+        {
+            $table = new Table("'.strtolower($name).'s");
+            $table->Drop();
         }
     }
+}
 ?>';
 
         $dbfile = fopen($location, "w") or die("Unable to open file!");

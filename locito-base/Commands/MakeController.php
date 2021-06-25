@@ -30,32 +30,63 @@ class MakeController extends Command
     {
         $name = $input->getArgument($this->commandArgumentName);
 
-        $location = dirname(__DIR__, 4).'/Controllers/'.$name.'Controller.php';
+        $location = dirname(__DIR__, 2).'/app/Controllers/'.$name.'Controller.php';
 
         $body = 
 '<?PHP
-#################################################################################################
-#                                    IMPORTANT                                                 
-#                                                                                              
-#   Add "include("../Controllers/'.$name.'Controller.php");" to the "\public\index.php" file!   
-#                                                                                              
-#                                                                                              
-#################################################################################################
+namespace App\Controllers;
+use \Catnip\View;
+use \Catnip\Route;
 
-namespace Controllers{
-    class '.$name.'Controller{
-        public static function index()
-        {
-            include("../Views/'.$name.'.index.php");
-        }
+use \App\Models\\'.$name.';
 
-        public static function create()
-        {
-            $var1 = $_POST["form_var1"];
+class '.$name.'Controller extends Controller{
 
-            \Models\\'.$name.'::Create($var1);
-        }
+    public static function index()
+    {
+        View::Render("'.strtolower($name).'/index");
     }
+
+    public static function show($id)
+    {
+        $model = '.$name.'::Find($id);
+        View::Render("'.strtolower($name).'/show", ["model" => $model]);
+    }
+
+    public static function create()
+    {
+        View::Render("'.strtolower($name).'/create");
+    }
+
+    public static function store()
+    {
+        '.$name.'::Create([
+            //Add the values to add here
+        ]);
+        View::Route();
+    }
+
+    public static function edit($id)
+    {
+        $model = '.$name.'::Find($id);
+        View::Render("'.strtolower($name).'/edit", ["model" => $model]);
+    }
+
+    public static function update($id)
+    {
+        $model = '.$name.'::Find($id);
+        $model->Update([
+            //Add the values to update here
+        ]);
+        View::Route();
+    }
+
+    public static function delete($id)
+    {
+        $model = '.$name.'::Find($id);
+        $model->Delete();
+        View::Route();
+    }   
 }
 ?>';
 
