@@ -36,6 +36,7 @@ class MakeModel extends Command
 '<?PHP
 namespace App\Models;
 class '.$name.' extends \Catnip\Model{
+    protected static $table;
     protected static $tablename = "'.strtolower($name).'s";
 
     protected static $fillables = [
