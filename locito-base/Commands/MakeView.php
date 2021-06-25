@@ -34,7 +34,7 @@ class MakeView extends Command
 
         $body = 
 '@include(layout/header)
-<div id="main" class="container">
+<div id="app" class="container">
 <!-- Place Content here -->
 </div>
 @include(layout/footer)';
