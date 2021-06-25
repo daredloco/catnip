@@ -68,6 +68,25 @@ With Locito:
             ['rank' => 'ranks'] //ADD THIS LINE TO MAKE 'rank' a foreign key
   ```
 * Run ```php locito db:build --fresh --seed``` to create the database
+* Add those lines before the end of the ```Compile``` function in ```\catnip\View.php``` to extend the Templating System (MAKE A BACKUP!):
+```php
+//Handle AUTH plugin 
+$newcontent = preg_replace("/@hasRank\((.*)\)/", "<?PHP if(\Plugins\Ranks\Scripts\Ranks::UserHasRank(\Plugins\Ranks\Models\Rank::FindByName($1))){?>", $content;
+$newcontent = preg_replace("/@endHasRank/", "<?PHP } ?>", $content);
+
+$newcontent = preg_replace("/@hasHigerRank\((.*)\)/", "<?PHP if(\Plugins\Ranks\Scripts\Ranks::UserHasHigherRank(\Plugins\Ranks\Models\Rank::FindByName($1))){?>", $content;
+$newcontent = preg_replace("/@endHasHigerRank/", "<?PHP } ?>", $content);
+
+$newcontent = preg_replace("/@hasHigherScore\((.*)\)/", "<?PHP if(\Plugins\Ranks\Scripts\Ranks::UserHasHigherScore($1)){?>", $content;
+$newcontent = preg_replace("/@endHasHigherScore/", "<?PHP } ?>", $content);
+
+
+//ADD BEFORE THIS LINE
+if($cache)
+{
+        $newcontent .= "<?PHP \\Catnip\\Cache::CacheEnd(); ?>";
+}
+```
 
 ### Usage
 * Add Rank to User:
