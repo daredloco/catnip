@@ -97,6 +97,9 @@ namespace Catnip{
             $newcontent = preg_replace("/__\((.*)\)/", "<?PHP echo \\Catnip\\Loca::Trans('$1'); ?>", $newcontent);
             $newcontent = preg_replace("/@loca\((.*)\)(.*)@endloca/", "<?PHP echo \\Catnip\\Loca::Trans('$1','$2'); ?>", $newcontent);
 
+            //Handle URL
+            $newcontent = preg_replace("/@url\((.*)\)/", "<?PHP echo('".REMOTE_ROOT."/$1'); ?>", $newcontent);
+
             //End Cachefunction
             if($cache)
             {
