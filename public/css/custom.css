@@ -4,3 +4,103 @@ Author: Roman Wanner (daredloco)
 Link: https://www.github.com/daredloco/catnip
 License: Closed Source
 */
+
+.has-feature{
+    color:green;
+}
+
+.hasnt-feature{
+    color:red;
+}
+
+.material-icons{
+    display: inline-flex;
+    vertical-align: top;
+}
+
+/* MENUICON COLORS */
+.icon-dashboard{
+    color: #495057;
+}
+
+.icon-fgts{
+    color: darkgreen;
+}
+
+.icon-documents{
+    color: #495057;
+}
+
+.icon-clients{
+    color:blue;
+}
+
+.icon-profile{
+    color:green;
+}
+
+.icon-notifications{
+    color: rgb(255, 102, 0);
+}
+
+.icon-help{
+    color:blue;
+}
+
+.icon-logout{
+    color:red;
+}
+
+[v-cloak] {
+    display:none;
+}
+
+[v-cloak]::before {
+    content: " ";
+}
+
+.disabled-link{
+    text-decoration: line-through;
+}
+
+.profile-plan{
+    background-color: #1d60a4b3;
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-bottom: 5px;
+    border-radius: 15px;
+    font-size:large;
+}
+
+.profile-planleft{
+    background-color: #1c4c7bb3;
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    font-size:large;
+}
+
+.dash-card{
+    background-color: rgba(199, 199, 199, 0.374);
+    min-height: 200px;
+    margin-bottom: 10px;
+}
+
+.center-screen{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.img-thumb{
+    height: 150px !important;
+    width: auto !important;
+}
