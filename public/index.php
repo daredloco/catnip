@@ -1,4 +1,8 @@
 <?PHP
+/*
+DO NOT CHANGE ANYTHING INSIDE OF THIS FILE!
+IF YOU CHANGE CONTENT INSIDE THIS FILE, YOU COULD BREAK THE FRAMEWORK!
+*/
 if(session_id() == '' || !isset($_SESSION) || session_status() === PHP_SESSION_NONE) {
     session_start();
 }
