@@ -7,6 +7,10 @@ class Debugger{
 
     public static function Log($msg, $type = self::TYPE_INFO)
     {
+        if(!DEBUG_MODE)
+        {
+            return;
+        }
         $all = fopen(dirname(__DIR__).'/logs/all.txt','a');
         $fromtype = fopen(dirname(__DIR__).'/logs/'.$type.'.txt','a');
 
