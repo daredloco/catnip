@@ -1,4 +1,4 @@
-@include(layout/headerv2)
+@include(layout/header)
   <div id="main" class="container">
     <div class="row">
         <div class="col-lg-12 mt-4 text-center">
@@ -17,4 +17,4 @@
             </div>
     </div>
   </div>
-@include(layout/footerv2)
+@include(layout/footer)
