@@ -6,6 +6,14 @@ Route::get('/',function(){
     \App\Controllers\HomeController::index();
 });
 
+Route::get('/features',function(){
+    \Catnip\View::Render('features');
+});
+
+Route::get('/plugins',function(){
+    \Catnip\View::Render('plugins');
+});
+
 Route::get('/test/([a-zA-Z0-9_-]*)', function($var1){
     \App\Controllers\TestController::index($var1);
 }, ['authcheck']);

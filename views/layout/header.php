@@ -77,9 +77,9 @@
                             <li class="nav-item">
                                 <a href="@url()" class="nav-link">
                                     <span class="material-icons">
-                                        dashboard
+                                        home
                                     </span>
-                                    __(landing)
+                                    __(home)
                                 </a>
                             </li>
                         </ul>
@@ -97,9 +97,24 @@
         <div class="list-group list-group-flush">
             <a href="@url()" class="list-group-item list-group-item-action bg-light">
                 <span class="material-icons">
-                    dashboard
+                    home
                 </span>
                 __(home)</a>
+            <a href="@url(features)" class="list-group-item list-group-item-action bg-light">
+                <span class="material-icons">
+                    construction
+                </span>
+                __(features)</a>
+            <a href="@url(plugins)" class="list-group-item list-group-item-action bg-light">
+                <span class="material-icons">
+                    extension
+                </span>
+                __(plugins)</a>
+
+            <div class="offset-1 mt-2">
+            <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a>
+           
+            </div>    
         </div>
         </div>
         <!-- /#sidebar-wrapper -->

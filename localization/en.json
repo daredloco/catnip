@@ -35,6 +35,15 @@
         {
             "key": "home",
             "value": "Home"
+        },
+        {
+            "key": "features",
+            "value": "Features"
+        },
+        {
+            "key": "plugins",
+            "value": "Plugins"
         }
+        
     ]
 }
