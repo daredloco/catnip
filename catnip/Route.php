@@ -7,6 +7,16 @@ namespace Catnip{
     private static $methodNotAllowed = null;
     private static $noRights = null;
   
+    public static function back()
+    {
+      $lasturl = \Catnip\Helpers\Zeo::getLastVisit();
+      if(!isset($lasturl))
+      {
+        $lasturl = REMOTE_ROOT;
+      }
+      echo '<script>window.location.replace("'.$lasturl.'");</script>';
+    }
+
     public static function add($expression, $function, $method = 'get', $middleware = []){
       array_push(self::$routes,Array(
         'expression' => $expression,
@@ -84,6 +94,9 @@ namespace Catnip{
     }
   
     public static function run($basepath = '/'){
+      //SAVE LAST VISITED URL
+      \Catnip\Helpers\Zeo::setLastVisit();
+
       $parsed_url = parse_url($_SERVER['REQUEST_URI']);
   
       if(isset($parsed_url['path'])){
