@@ -31,6 +31,10 @@
         {
             "key": "replace",
             "value": "This is a {REPLACE_ME} test!"
+        },
+        {
+            "key": "home",
+            "value": "Home"
         }
     ]
 }

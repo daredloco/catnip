@@ -12,6 +12,8 @@ Route::get('/test/([a-zA-Z0-9_-]*)', function($var1){
 
 Route::get('/middleware', function(){ echo 'Hello world!';}, ['authcheck']);
 
+Route::post('/post', function(){});
+
 //PLUGINS
 require_once('../plugins/Auth/Routes/web.php'); //Loads the Auth Plugin routes
 
