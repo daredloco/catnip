@@ -75,7 +75,7 @@
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                                <a href="@url(home)" class="nav-link">
+                                <a href="@url()" class="nav-link">
                                     <span class="material-icons">
                                         dashboard
                                     </span>
@@ -95,7 +95,7 @@
             Dedetizar Admin
         </div>
         <div class="list-group list-group-flush">
-            <a href="@url(home)" class="list-group-item list-group-item-action bg-light">
+            <a href="@url()" class="list-group-item list-group-item-action bg-light">
                 <span class="material-icons">
                     dashboard
                 </span>
