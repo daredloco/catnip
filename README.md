@@ -29,7 +29,7 @@ It's size without plugins and locito (command-line tool) is less than 100kb.
 **Warning**: Plugins may need other dependencies!
 
 ### Usage
-Todo
+[Manual](https://github.com/daredloco/catnip/tree/main/Manual.md)
 
 ### License
 At the moment the Catnip Framework is under a restrictive license, but that will change in the future!
