@@ -13,7 +13,7 @@ It's size without plugins and locito (command-line tool) is less than 100kb.
 * Localization => With the builtin LoCa Localization System you can easily localizate your project
 * Custom ErrorHandler => Handle any kind of error the way you want.
 * FileUploader => Download/Upload/Show Files and their content the easy way
-* Locito => This Console application helps you create new Models, Tables, Views and it can update dependencies (even from plugins) automatically. Powered by Symfony/Console
+* Locito => This Console application helps you create new Models, Tables, Views and it can update dependencies (even from plugins) automatically. Powered by [Symfony/Console](https://github.com/symfony/console)
 * Template System => Our own Template System, helps you create templates without using any line of PHP inside it.
 
 ### Plugins (Optional)
