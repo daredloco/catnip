@@ -1,8 +1,18 @@
 {
-    "name": "rowadigital/catnip",
+    "name": "daredloco/catnip",
     "license": "RWL",
     "type": "framework",
-    "description": "The standart version of the Catnip Framework",
+    "description": "The default version of the Catnip Framework",
+    "keywords": ["php","framework"],
+    "homepage": "https://github.com/daredloco/catnip",
+    "authors": [
+        {
+            "name": "Roman Wanner",
+            "email": "roman_wanner@rowa-digital.ch",
+            "homepage": "https://www.rowa-digital.ch",
+            "role": "Developer"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "App\\": "app/",
