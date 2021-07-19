@@ -31,6 +31,19 @@
         {
             "key": "replace",
             "value": "This is a {REPLACE_ME} test!"
+        },
+        {
+            "key": "home",
+            "value": "Home"
+        },
+        {
+            "key": "features",
+            "value": "Features"
+        },
+        {
+            "key": "plugins",
+            "value": "Plugins"
         }
+        
     ]
 }

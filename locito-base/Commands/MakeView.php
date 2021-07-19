@@ -30,7 +30,7 @@ class MakeView extends Command
     {
         $name = $input->getArgument($this->commandArgumentName);
 
-        $location = dirname(__DIR__, 4).'/Views/'.$name.'.php';
+        $location = dirname(__DIR__, 2).'/Views/'.$name.'.php';
 
         $body = 
 '@include(layout/header)
