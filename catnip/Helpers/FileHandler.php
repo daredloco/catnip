@@ -4,6 +4,11 @@ class FileHandler{
     //DATA TRANSFER
     public static function UploadFile($file, $destination, bool $override = false, bool $isPrivate = false, bool $hasLimit = true)
     {
+        if(!FS_ACTIVE)
+        {
+            return false;
+        }
+
         //SETS THE TARGET_DIR FOR EITHER A PRIVATE OR PUBLIC UPLOAD
         $target_dir = FS_DIRECTORY;
         if($isPrivate)
@@ -86,6 +91,11 @@ class FileHandler{
 
     public static function DeleteFile($location, bool $isPrivate = false)
     {
+        if(!FS_ACTIVE)
+        {
+            return false;
+        }
+        
         $target_dir = FS_DIRECTORY;
         if($isPrivate)
         {

@@ -8,7 +8,10 @@ namespace Catnip{
 
         public static function Load($key = null)
         {
-            
+            if(!LOCA_ACTIVE)
+            {
+                return;
+            }
             if(is_null($key))
             {
                 $key = LOCA_DEFAULT;
@@ -39,6 +42,11 @@ namespace Catnip{
 
         public static function Trans($key, $replacements = null)
         {
+            if(!LOCA_ACTIVE)
+            {
+                return;
+            }
+
             if(array_key_exists($key, self::$dict)){
                 if(is_null($replacements))
                 {
@@ -69,11 +77,19 @@ namespace Catnip{
 
         public static function StartPage()
         {
+            if(!LOCA_ACTIVE)
+            {
+                return;
+            }
             ob_start();
         }
 
         public static function EndPage()
         {
+            if(!LOCA_ACTIVE)
+            {
+                return;
+            }
             $content = ob_get_contents();
             foreach (self::$dict as $key => $value) {
                 $content = str_replace('__('.$key.')', $value, $content);
