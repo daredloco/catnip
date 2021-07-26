@@ -15,6 +15,7 @@ It's size without plugins and locito (command-line tool) is less than 100kb.
 * FileUploader => Download/Upload/Show Files and their content the easy way
 * Locito => This Console application helps you create new Models, Tables, Views and it can update dependencies (even from plugins) automatically. Powered by [Symfony/Console](https://github.com/symfony/console)
 * Template System => Our own Template System, helps you create templates without using any line of PHP inside it.
+* Validator => Check your requests for datatypes and more (Todo)
 
 ### Plugins (Optional)
 * [Auth](https://github.com/daredloco/catnip/tree/main/plugins/Auth) => A plugin that handles login/registration/logout
