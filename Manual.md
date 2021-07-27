@@ -76,7 +76,7 @@ Check for password (Needs to be at least 8 chars long and max 32 chars. Needs to
 $isValid = Validator::Validate('Password11', 'password'); //Returns true if its string, false if not
 ```
 
-Check if value is nullable
+Check if value is nullable (If nullable is not set, but the value is null the validator would return false!)
 ```php
 $isValid = Validator::Validate(null, 'string|nullable');
 ```
