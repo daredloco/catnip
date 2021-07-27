@@ -12,7 +12,7 @@ class Validator{
             $values = $valarr;
         }
         foreach ($values as $value => $args) {
-            if(!validateValue($value, $args))
+            if(!static::validateValue($value, $args))
             {
                 return false;
             }
@@ -20,7 +20,7 @@ class Validator{
         return true;
     }
 
-    private function validateValue($value, $args)
+    private static function validateValue($value, $args)
     {
         //Types: numeric, integer, double, float, long, array, bool, string, email, ip, url, domain, password (needs upper/lower/number min:8, max:32)
         //Conditions: nullable, unsigned, min, max, starts, ends
@@ -263,7 +263,7 @@ class Validator{
             }
 
             //Check if the value ends with the value
-            if(Str::EndsWith("ends:", $arg))
+            if(Str::StartsWith("ends:", $arg))
             {
                 $val = str_replace("ends:", "", $arg);
                 if(!Str::EndsWith($val, $value))
@@ -299,25 +299,25 @@ class Validator{
             }
 
             //Check if the value is bigger than the maximum value
-            if(Str::EndsWith("max:", $arg))
+            if(Str::StartsWith("max:", $arg))
             {
                 $maxval = (int)str_replace("max:", "", $arg);
                 if(is_numeric($value))
                 {
-                    if($value > $minval)
+                    if($value > $maxval)
                     {
                         return false;
                     }
                 }
                 elseif(is_array($value))
                 {
-                    if(count($value) > $minval)
+                    if(count($value) > $maxval)
                     {
                         return false;
                     }
                 }
                 else{
-                    if(strlen($value) > $minval)
+                    if(strlen($value) > $maxval)
                     {
                         return false;
                     }
