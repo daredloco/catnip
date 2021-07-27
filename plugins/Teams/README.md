@@ -39,7 +39,7 @@ With Locito:
   ```php
   <?PHP
   namespace Database\Seeders;
-  use \Plugins\Ranks\Models\Team;
+  use \Plugins\Teams\Models\Team;
 
   class TeamSeeder{
 
@@ -85,13 +85,13 @@ if($cache)
 ```php
 $user = \Plugins\Auth\Scripts\Auth::user();
 $rank = \Plugins\Teams\Models\Team::FindByName("admin");
-\Plugins\Ranks\Scripts\Ranks::AddTeam($user, $team);
+\Plugins\Teams\Scripts\Ranks::AddTeam($user, $team);
 ```
 
 * Remove Team from User:
 ```php
 $user = \Plugins\Auth\Scripts\Auth::user();
-\Plugins\Ranks\Scripts\Teams::RemoveTeam($user);
+\Plugins\Teams\Scripts\Teams::RemoveTeam($user);
 ```
 
 * Check if User is in Team:
