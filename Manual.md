@@ -81,7 +81,7 @@ Check if value is nullable (If nullable is not set, but the value is null the va
 $isValid = Validator::Validate([null => 'string|nullable']);
 ```
 
-Check if value is unsigned (only for numbers)
+Check if value is unsigned (Needs to be a number or will be ignored)
 ```php
 $isValid = Validator::Validate([-1 => 'integer|unsigned']);
 ```
@@ -94,6 +94,16 @@ $isValid = Validator::Validate([['a','b','c'] => 'array|min:3']);
 Check for maximum value (for string is string length, for array is array size)
 ```php
 $isValid = Validator::Validate([['a','b','c'] => 'array|max:4']);
+```
+
+Check if value starts with another value (needs to be a string or will be ignored)
+```php
+$isValid = Validator::Validate(['startHere' => 'string|starts:start']);
+```
+
+Check if value ends with another value (needs to be a string or will be ignored)
+```php
+$isValid = Validator::Validate(['hereitEnds' => 'string|ends:Ends']);
 ```
 
 ### Hints

@@ -23,7 +23,7 @@ class Validator{
     private function validateValue($value, $args)
     {
         //Types: numeric, integer, double, float, long, array, bool, string, email, ip, url, domain, password (needs upper/lower/number min:8, max:32)
-        //Conditions: nullable
+        //Conditions: nullable, unsigned, min, max, starts, ends
         $argsarr = explode('|', $args);
         $isNullable = false;
         $isArray = false;
@@ -250,6 +250,26 @@ class Validator{
                         }
                     }
                 break;
+            }
+
+            //Check if the value starts with the value
+            if(Str::StartsWith("starts:", $arg))
+            {
+                $val = str_replace("starts:", "", $arg);
+                if(!Str::StartsWith($val, $value))
+                {
+                    return false;
+                }
+            }
+
+            //Check if the value ends with the value
+            if(Str::EndsWith("ends:", $arg))
+            {
+                $val = str_replace("ends:", "", $arg);
+                if(!Str::EndsWith($val, $value))
+                {
+                    return false;
+                }
             }
 
             //Check if the value is smaller than the minimum value
