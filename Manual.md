@@ -1,5 +1,82 @@
 # Manual
 
+## Locito
+
+Locito is a commandline tool for the framework.
+
+### Usage
+
+Install Frameworks dependencies for the first time
+```
+php locito app:install
+```
+
+Update Frameworks dependencies
+```
+php locito app:update
+```
+
+Update Plugins dependencies
+```
+php locito plugins:update
+```
+
+Clear cache and temp folders
+```
+php locito clear:all
+```
+
+Clear cache folder
+```
+php locito clear:cache
+```
+
+Clear temp folder
+```
+php locito clear:temp
+```
+
+Build database (You will need to create the table first!)
+```
+php locito db:build
+```
+
+Make Controller, Model, Seeder and Table (If you write it in uppercase, the table will be written in lowercase automatically!)
+```
+php locito make:all Name
+```
+
+Make Controller
+```
+php locito make:controller Name
+```
+
+Make Model
+```
+php locito make:model Name
+```
+
+Make Seeder
+```
+php locito make:seeder Name
+```
+
+Make Table
+```
+php locito make:table Name
+```
+
+Make View
+```
+php locito make:view Name
+```
+
+Make Localization (key is en for example, english name is the name in english, local name is the name in the local language)
+```
+php locito make:loca Key EnglishName LocalName
+```
+
+
 ## Validator
 
 With the Validator class you can check for datatypes and more.
