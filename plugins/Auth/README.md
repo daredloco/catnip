@@ -2,7 +2,7 @@
 
 ### Installation
 * Run ``` php locito make:table User ```
-* Add the following lines to ```database/Tables/UserTable.php```:
+* Replace the content in ```database/Tables/UserTable.php``` with the following lines:
   ```php
     <?PHP
     namespace Database\Tables{

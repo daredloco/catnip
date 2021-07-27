@@ -7,7 +7,7 @@ To use all functions in this plugin you'll need the Auth plugin or create an own
 ### Installation
 With Locito:
 * Run ``` php locito make:table Rank ```
-* Add the following lines to ```database/Tables/RankTable.php```:
+* Replace the content in ```database/Tables/RankTable.php``` with the following lines:
   ```php
   <?PHP
   namespace Database\Tables{
