@@ -2,11 +2,11 @@
 
 ### Requirements
 
-To use ranks you'll need the Auth plugin or create an own 'users' table with a rank row as integer!
+To use all functions in this plugin you'll need the Auth plugin or create an own 'users' table with a rank row as integer!
 
 ### Installation
 With Locito:
-* Run ```php locito make:table Rank```
+* Run ``` php locito make:table Rank ```
 * Add the following lines to ```database/Tables/RankTable.php```:
   ```php
   <?PHP
