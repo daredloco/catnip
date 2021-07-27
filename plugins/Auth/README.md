@@ -1,7 +1,7 @@
 # Auth Plugin for Catnip
 
 ### Installation
-* Run ``` php locito Make:Table User ```
+* Run ``` php locito make:table User ```
 * Add the following lines to ```database/Tables/UserTable.php```:
   ```php
     <?PHP
