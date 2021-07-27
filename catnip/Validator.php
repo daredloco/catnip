@@ -51,6 +51,23 @@ class Validator{
                         }
                     }
                 break;
+                case "integer":
+                    if(is_array($value))
+                    {
+                        foreach($value as $val)
+                        {
+                            if(!is_int($val))
+                            {
+                                return false;
+                            }
+                        }
+                    }else{
+                        if(!is_int($value))
+                        {
+                            return false;
+                        }
+                    }
+                break;
                 case "double":
                     if(is_array($value))
                     {
