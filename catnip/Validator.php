@@ -6,6 +6,11 @@ use \Catnip\Utils\Str;
 class Validator{
     public static function Validate($values)
     {
+        if(!is_array($values))
+        {
+            $valarr = [$values];
+            $values = $valarr;
+        }
         foreach ($values as $value => $args) {
             if(!validateValue($value, $args))
             {
