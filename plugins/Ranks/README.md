@@ -108,7 +108,7 @@ $user = \Plugins\Auth\Scripts\Auth::user();
 ```php
 $user = \Plugins\Auth\Scripts\Auth::user();
 $rank = \Plugins\Ranks\Models\Rank::FindByName("admin");
-if(\Plugins\Ranks\Scripts\Ranks::HasRank($rank))
+if(\Plugins\Ranks\Scripts\Ranks::HasRank($user, $rank))
 {
   //HAS RANK
 }else{
@@ -121,10 +121,55 @@ if(\Plugins\Ranks\Scripts\Ranks::HasRank($rank))
 ```php
 $user = \Plugins\Auth\Scripts\Auth::user();
 $rank = \Plugins\Ranks\Models\Rank::FindByName("admin");
-if(\Plugins\Ranks\Scripts\Ranks::HasHigherRank($rank))
+if(\Plugins\Ranks\Scripts\Ranks::HasHigherRank($user, $rank))
 {
   //HAS HIGHER RANK
 }else{
   //DOENST HAVE HIGHER RANK
+}
+```
+
+* Check if User has higher score:
+```php
+$user = \Plugins\Auth\Scripts\Auth::user();
+$score = 2;
+if(\Plugins\Ranks\Scripts\Ranks::HasHigherScore($user, $rank))
+{
+  //HAS HIGHER RANK
+}else{
+  //DOENST HAVE HIGHER RANK
+}
+```
+
+* Check if loggedin User has certain rank:
+```php
+$rank = \Plugins\Ranks\Models\Rank::FindByName("admin");
+if(\Plugins\Ranks\Scripts\Ranks::UserHasRank($rank))
+{
+  //HAS HIGHER RANK
+}else{
+  //DOESNT HAVE HIGHER RANK
+}
+```
+
+* Check if loggedin User has higher rank:
+```php
+$rank = \Plugins\Ranks\Models\Rank::FindByName("admin");
+if(\Plugins\Ranks\Scripts\Ranks::UserHasHigherRank($rank))
+{
+  //HAS RANK
+}else{
+  //DOESNT HAVE RANK
+}
+```
+
+* Check if loggedin User has higher score:
+```php
+$score = 2;
+if(\Plugins\Ranks\Scripts\Ranks::UserHasHigherScore($score))
+{
+  //HAS RANK
+}else{
+  //DOESNT HAVE RANK
 }
 ```
