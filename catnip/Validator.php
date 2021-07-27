@@ -236,6 +236,15 @@ class Validator{
                 case "nullable":
                     $isNullable = true;
                 break;
+                case "unsigned":
+                    if(is_numeric($value))
+                    {
+                        if($value < 0)
+                        {
+                            return false;
+                        }
+                    }
+                break;
             }
 
             //Check if the value is smaller than the minimum value
