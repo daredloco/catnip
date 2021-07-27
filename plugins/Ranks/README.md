@@ -1,5 +1,9 @@
 # Ranks Plugin for Catnip
 
+### Requirements
+
+To use ranks you'll need the Auth plugin or create an own 'users' table with a rank row as integer!
+
 ### Installation
 With Locito:
 * Run ```php locito make:table Rank```
