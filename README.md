@@ -20,7 +20,7 @@ It's size without plugins and locito (command-line tool) is less than 100kb.
 ### Plugins (Optional)
 * [Auth](https://github.com/daredloco/catnip/tree/main/plugins/Auth) => A plugin that handles login/registration/logout
 * [Ranks](https://github.com/daredloco/catnip/tree/main/plugins/Ranks) => A plugin that helps you handle User ranks/permissions
-* Teams => A plugin that helps you handle User teams/permissions (Todo)
+* [Teams](https://github.com/daredloco/catnip/tree/main/plugins/Teams) => A plugin that helps you handle User teams/permissions
 * [Google\Analytics](https://github.com/daredloco/catnip/tree/main/plugins/Google) => A plugin that handles interaction with Google\Analytics
 * [Google\Recaptcha](https://github.com/daredloco/catnip/tree/main/plugins/Google) => A plugin that handles RecaptchaV3
 * [Google\Drive](https://github.com/daredloco/catnip/tree/main/plugins/Google) => A plugin that handles interaction with Google\Drive (work in progress)

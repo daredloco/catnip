@@ -67,7 +67,7 @@ With Locito:
 
 * Add those lines before the end of the ```Compile``` function in ```\catnip\View.php``` to extend the Templating System (MAKE A BACKUP!):
 ```php
-//Handle AUTH plugin 
+//Handle TEAMS plugin 
 $newcontent = preg_replace("/@InTeam\((.*)\)/", "<?PHP if(\Plugins\Teams\Scripts\Teams::UserInTeam(\Plugins\Teams\Models\Team::FindByName($1))){?>", $newcontent);
 $newcontent = preg_replace("/@endInTeam/", "<?PHP } ?>", $newcontent);
 
@@ -85,13 +85,13 @@ if($cache)
 ```php
 $user = \Plugins\Auth\Scripts\Auth::user();
 $rank = \Plugins\Teams\Models\Team::FindByName("admin");
-\Plugins\Ranks\Scripts\Ranks::AddTeam($user, $team);
+\Plugins\Teams\Scripts\Teams::AddTeam($user, $team);
 ```
 
 * Remove Team from User:
 ```php
 $user = \Plugins\Auth\Scripts\Auth::user();
-\Plugins\Ranks\Scripts\Teams::RemoveTeam($user);
+\Plugins\Teams\Scripts\Teams::RemoveTeam($user);
 ```
 
 * Check if User is in Team:
