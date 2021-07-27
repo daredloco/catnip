@@ -74,7 +74,7 @@ With Locito:
 
 * Add those lines before the end of the ```Compile``` function in ```\catnip\View.php``` to extend the Templating System (MAKE A BACKUP!):
 ```php
-//Handle AUTH plugin 
+//Handle RANKS plugin 
 $newcontent = preg_replace("/@hasRank\((.*)\)/", "<?PHP if(\Plugins\Ranks\Scripts\Ranks::UserHasRank(\Plugins\Ranks\Models\Rank::FindByName($1))){?>", $newcontent);
 $newcontent = preg_replace("/@endHasRank/", "<?PHP } ?>", $newcontent);
 
