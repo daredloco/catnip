@@ -114,8 +114,11 @@ $isValid = Validator::Validate([[1] => 'array|integer']); //Would return true, b
 
 You can check multiple values at once. For example:
 ```php
+$value1 = 'test';
+$value2 = 2;
+
 $isValid = Validator::Validate([
-    'test' => 'string',
-    1 => 'integer', 
+    $value1 => 'string',
+    $value2 => 'integer', 
 ]);
 ```
