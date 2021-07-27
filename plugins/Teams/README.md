@@ -19,7 +19,7 @@ With Locito:
           {
               $table = new Table("teams", [
                   "id" => "INT|AUTO_INCREMENT|PRIMARY KEY",
-                  "name" => "VARCHAR(255)|NOT NULL"
+                  "name" => "VARCHAR(255)|NOT NULL",
                   "created_at" => "TIMESTAMP|DEFAULT|CURRENT_TIMESTAMP"
               ]);
               $table->Create();
@@ -39,7 +39,7 @@ With Locito:
   ```php
   <?PHP
   namespace Database\Seeders;
-  use \Plugins\Ranks\Models\Team;
+  use \Plugins\Teams\Models\Team;
 
   class TeamSeeder{
 

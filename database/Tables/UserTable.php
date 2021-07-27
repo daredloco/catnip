@@ -9,9 +9,10 @@ namespace Database\Tables{
                 "password" => "VARCHAR(255)|NOT NULL",
                 "email" => "VARCHAR(255)|NOT NULL",
                 "created_at" => "TIMESTAMP|DEFAULT|CURRENT_TIMESTAMP",
-                "rank" => "INT|NULL"
+                "rank" => "INT",
+                "team" => "INT"
             ],
-            ['rank' => 'ranks']);
+            ['rank' => 'ranks', 'team' => 'teams']);
             $table->Create();
         }
 

@@ -1,5 +1,5 @@
 <?PHP
-namespace Plugins\Ranks\Teams;
+namespace Plugins\Teams\Models;
 class Team extends \Catnip\Model{
     protected static $table;
     protected static $tablename = "teams";
