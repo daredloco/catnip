@@ -28,7 +28,7 @@ It's size without plugins and locito (command-line tool) is less than 100kb.
 * Blog => A plugin that helps you create your own blog (Todo)
 * CMS => Content Management System to manage website without (much) coding (Todo)
 
-**Warning**: Plugins may need other dependencies!
+**Warning**: Plugins may need other dependencies! Call ``` php locito plugins:update ``` to install the dependencies and check their licenses!
 
 ### Usage
 [Manual](https://github.com/daredloco/catnip/tree/main/Manual.md)
