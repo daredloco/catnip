@@ -1,5 +1,10 @@
 # Manual
 
+## Index
+
+[Locito](#Locito)
+[Validator](#Validator)
+
 ## Locito
 
 Locito is a commandline tool for the framework.
