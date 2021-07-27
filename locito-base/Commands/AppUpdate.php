@@ -25,8 +25,11 @@ class AppUpdate extends Command
         $begTime = microtime(true);
         $sTime = microtime(true);
         $process = new Process(["composer","update"]);
+        $process->setTimeout(3600);
         $process->setWorkingDirectory(getcwd());
-        $process->run();
+        $process->run(function ($type, $buffer) {
+            echo $buffer;
+         });
         if (!$process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
@@ -36,7 +39,9 @@ class AppUpdate extends Command
         $sTime = microtime(true);
         $locitodir = getcwd().DIRECTORY_SEPARATOR.'locito-base';
         $process->setWorkingDirectory($locitodir);
-        $process->run();
+        $process->run(function ($type, $buffer) {
+            echo $buffer;
+         });
         if (!$process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }

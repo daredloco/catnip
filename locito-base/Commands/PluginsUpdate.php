@@ -57,8 +57,11 @@ class PluginsUpdate extends Command
                     $sTime = microtime(true);
                     $output->writeln("Start updating Plugin \"".$dirstr."\"");
                     $process = new Process(["composer","update"]);
+                    $process->setTimeout(3600);
                     $process->setWorkingDirectory($dir);
-                    $process->run();
+                    $process->run(function ($type, $buffer) {
+                        echo $buffer;
+                     });
                     if (!$process->isSuccessful()) {
                         throw new ProcessFailedException($process);
                     }else{
