@@ -85,7 +85,7 @@ if($cache)
 ```php
 $user = \Plugins\Auth\Scripts\Auth::user();
 $rank = \Plugins\Teams\Models\Team::FindByName("admin");
-\Plugins\Teams\Scripts\Ranks::AddTeam($user, $team);
+\Plugins\Teams\Scripts\Teams::AddTeam($user, $team);
 ```
 
 * Remove Team from User:
