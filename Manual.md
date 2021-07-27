@@ -2,8 +2,8 @@
 
 ## Index
 
-[Locito](#Locito)
-[Validator](#Validator)
+* [Locito](#Locito)
+* [Validator](#Validator)
 
 ## Locito
 
