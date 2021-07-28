@@ -2,8 +2,40 @@
 
 ## Index
 
+* [Installation](#Installation)
 * [Locito](#Locito)
 * [Validator](#Validator)
+
+
+## Installation
+
+### First Steps
+
+* Download the Repository
+* Delete the Plugins you won't need.
+* If you don't want to use Locito delete the 'locito' file in the root folder and the whole 'locito-base' folder.
+* If you use Plugins, read the Readme.md files inside their folders and follow every step.
+
+### Configuration
+
+* Open the config.php file inside the root folder.
+* Set REMOTE_ROOT, this should be the URL to your root directory
+* Set DEBUG_MODE, you should set it to false it in a production environment!
+* Set DB_HOST, this is the host of your MySQL database.
+* Set DB_NAME, this is the name of your MySQL database.
+* Set DB_USER, this is the user of your MySQL database.
+* Set DB_PASS, this is the password of your MySQL database user.
+* Set CACHE_ACTIVE, you can set this to false in your test environment but it should be set to true in your production environment to minimize payload.
+* Set CACHE_TIME, the higher the number the longer it will take until the cache will be refreshed.
+* Set LOCA_ACTIVE, if you set it to false localization will be disabled.
+* Set LOCA_DIRECTORY, __DIR__.'/localization' is the default folder but you can change it if you want.
+* Set LOCA_DEFAULT, this is the default language. If you want to change it just enter the key of the language.
+* Set FS_ACTIVE, this is the FileSystem. If deactivated you won't be able to use any of the \Catnip\Helpers\FileHandler functions.
+* Set FS_DIRECTORY, this is the public directory of your filesystem. It should be a folder inside your public folder.
+* Set FS_PRIVATEDIRECTORY, this is a private folder and shouldn't be inside the public directory.
+* Set FS_MAXSIZE, this is the maximum filesize of an uploaded file in bytes. Set it to 0 for unlimited space.
+* Set FS_MAXSPACE, this is the maximum discspace the filesystem will use. Set it to 0 for unlimited space.
+
 
 ## Locito
 
