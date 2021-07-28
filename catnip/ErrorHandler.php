@@ -1,13 +1,18 @@
 <?PHP
 namespace Catnip;
+
+use \Catnip\Debugger;
+
 class ErrorHandler{
     public static function NotFound()
     {
+        Debugger::Info("Page not found on URL ".(($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
         include('../errorpages/404.php');
     }
 
     public static function MethodNotAllowed()
     {
+        Debugger::Info("Method not allowed on URL ".(($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
         include('../errorpages/405.php');
     }
 
@@ -38,6 +43,7 @@ class ErrorHandler{
 
     private static function Error($severity, $msg, $file, $line)
     {
+        Debugger::Exception("Error: ".$msg."\nSeverity: ".$severity."\nFile: ".$file."\nLine: ".$line."\n\n");
         print '<strong>Error</strong><br>\n
         Severity: '.$severity.'<br>
         Message: '.$msg.'<br>
@@ -47,6 +53,8 @@ class ErrorHandler{
 
     private static function Warning($severity, $msg, $file, $line)
     {
+        
+        Debugger::Exception("Warning: ".$msg."\nSeverity: ".$severity."\nFile: ".$file."\nLine: ".$line."\n\n");
         print '<strong>Warning</strong><br>\n
         Severity: '.$severity.'<br>
         Message: '.$msg.'<br>
@@ -56,6 +64,8 @@ class ErrorHandler{
 
     private static function Parse($severity, $msg, $file, $line)
     {
+        Debugger::Exception("Parse: ".$msg."\nSeverity: ".$severity."\nFile: ".$file."\nLine: ".$line."\n\n");
+        
         print '<strong>Parse</strong><br>\n
         Severity: '.$severity.'<br>
         Message: '.$msg.'<br>
@@ -65,6 +75,8 @@ class ErrorHandler{
 
     private static function Notice($severity, $msg, $file, $line)
     {
+        Debugger::Exception("Notice: ".$msg."\nSeverity: ".$severity."\nFile: ".$file."\nLine: ".$line."\n\n");
+        
         print '<strong>Notice</strong><br>\n
         Severity: '.$severity.'<br>
         Message: '.$msg.'<br>
@@ -74,6 +86,8 @@ class ErrorHandler{
 
     private static function CoreError($severity, $msg, $file, $line)
     {
+        Debugger::Exception("Core Error: ".$msg."\nSeverity: ".$severity."\nFile: ".$file."\nLine: ".$line."\n\n");
+        
         print '<strong>Core Error</strong><br>\n
         Severity: '.$severity.'<br>
         Message: '.$msg.'<br>
@@ -83,6 +97,8 @@ class ErrorHandler{
 
     private static function CoreWarning($severity, $msg, $file, $line)
     {
+        Debugger::Exception("Core Warning: ".$msg."\nSeverity: ".$severity."\nFile: ".$file."\nLine: ".$line."\n\n");
+        
         print '<strong>Core Warning</strong><br>\n
         Severity: '.$severity.'<br>
         Message: '.$msg.'<br>
@@ -92,6 +108,8 @@ class ErrorHandler{
 
     private static function CompileError($severity, $msg, $file, $line)
     {
+        Debugger::Exception("Compile Error: ".$msg."\nSeverity: ".$severity."\nFile: ".$file."\nLine: ".$line."\n\n");
+        
         print '<strong>Compile Error</strong><br>\n
         Severity: '.$severity.'<br>
         Message: '.$msg.'<br>
@@ -101,6 +119,8 @@ class ErrorHandler{
 
     private static function CompileWarning($severity, $msg, $file, $line)
     {
+        Debugger::Exception("Compile Warning: ".$msg."\nSeverity: ".$severity."\nFile: ".$file."\nLine: ".$line."\n\n");
+        
         print '<strong>Compile Warning</strong><br>\n
         Severity: '.$severity.'<br>
         Message: '.$msg.'<br>
@@ -110,6 +130,8 @@ class ErrorHandler{
 
     private static function UserError($severity, $msg, $file, $line)
     {
+        Debugger::Exception("User Error: ".$msg."\nSeverity: ".$severity."\nFile: ".$file."\nLine: ".$line."\n\n");
+        
         print '<strong>User Error</strong><br>\n
         Severity: '.$severity.'<br>
         Message: '.$msg.'<br>
@@ -119,6 +141,8 @@ class ErrorHandler{
 
     private static function UserWarning($severity, $msg, $file, $line)
     {
+        Debugger::Exception("User Warning: ".$msg."\nSeverity: ".$severity."\nFile: ".$file."\nLine: ".$line."\n\n");
+        
         print '<strong>User Warning</strong><br>\n
         Severity: '.$severity.'<br>
         Message: '.$msg.'<br>
@@ -128,6 +152,8 @@ class ErrorHandler{
 
     private static function UserNotice($severity, $msg, $file, $line)
     {
+        Debugger::Exception("User Notice: ".$msg."\nSeverity: ".$severity."\nFile: ".$file."\nLine: ".$line."\n\n");
+        
         print '<strong>User Notice</strong><br>\n
         Severity: '.$severity.'<br>
         Message: '.$msg.'<br>
@@ -137,6 +163,8 @@ class ErrorHandler{
 
     private static function Strict($severity, $msg, $file, $line)
     {
+        Debugger::Exception("Strict: ".$msg."\nSeverity: ".$severity."\nFile: ".$file."\nLine: ".$line."\n\n");
+        
         print '<strong>Strict</strong><br>\n
         Severity: '.$severity.'<br>
         Message: '.$msg.'<br>
@@ -146,6 +174,8 @@ class ErrorHandler{
 
     private static function Recoverable($severity, $msg, $file, $line)
     {
+        Debugger::Exception("Recoverable: ".$msg."\nSeverity: ".$severity."\nFile: ".$file."\nLine: ".$line."\n\n");
+        
         print '<strong>Recoverable</strong><br>\n
         Severity: '.$severity.'<br>
         Message: '.$msg.'<br>
@@ -155,6 +185,8 @@ class ErrorHandler{
 
     private static function Deprecated($severity, $msg, $file, $line)
     {
+        Debugger::Exception("Deprecated: ".$msg."\nSeverity: ".$severity."\nFile: ".$file."\nLine: ".$line."\n\n");
+        
         print '<strong>Deprecated</strong><br>\n
         Severity: '.$severity.'<br>
         Message: '.$msg.'<br>
@@ -164,6 +196,8 @@ class ErrorHandler{
 
     private static function UserDeprecated($severity, $msg, $file, $line)
     {
+        Debugger::Exception("User Deprecated: ".$msg."\nSeverity: ".$severity."\nFile: ".$file."\nLine: ".$line."\n\n");
+        
         print '<strong>User Deprecated</strong><br>\n
         Severity: '.$severity.'<br>
         Message: '.$msg.'<br>
