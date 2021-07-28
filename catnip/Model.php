@@ -12,6 +12,12 @@ class Model{
         static::$table->Insert($columns);
     }
 
+    public static function Remove($where, $sign, $value)
+    {
+        static::Init();
+        static::$table->Delete($where, $sign, $value);
+    }
+
     public static function Find($id)
     {
         static::Init();
