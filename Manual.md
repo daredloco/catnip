@@ -11,7 +11,7 @@
 
 ### First Steps
 
-* Download the Repository
+* Download the [Repository](https://github.com/daredloco/catnip/archive/refs/heads/main.zip)
 * Delete the Plugins you won't need.
 * If you don't want to use Locito delete the 'locito' file in the root folder and the whole 'locito-base' folder.
 * If you use Plugins, read the Readme.md files inside their folders and follow every step.
