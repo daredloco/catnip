@@ -36,4 +36,5 @@ It's size without plugins and locito (command-line tool) is less than 100kb.
 
 ### License
 http://creativecommons.org/licenses/by-nc-nd/4.0/
-If you want to use the framework commercially visit https://www.helvetiapps.com/products#catnip for more informations
+
+**If you want to use the framework commercially visit https://www.helvetiapps.com/products#catnip for more informations**
