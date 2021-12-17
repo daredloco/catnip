@@ -2,6 +2,7 @@
 namespace Plugins\Supporter\Controllers;
 use \Catnip\View;
 use \Plugins\Auth\Scripts\Auth;
+use \Plugins\Ranks\Scripts\Ranks;
 use \Plugins\Supporter\Models\Ticket;
 use \Catnip\Route;
 
@@ -18,18 +19,25 @@ class SupportController{
     {
         $user = Auth::user();
         $ticket = Ticket::Find($id);
+        if(!Ranks::UserHasHigherScore(2) && $ticket->user_id != $user->id)
+        {
+            Route::back();
+            return;
+        }
         View::RenderFromFile(dirname(__DIR__).'/Views/Show.php', "supportshow", ['ticket' => $ticket], false);
     }
 
     public static function create()
     {
-        $user = Auth::user();
         View::RenderFromFile(dirname(__DIR__).'/Views/Create.php', "supportcreate", [], false);
     }
 
     public static function store()
     {
         $user = Auth::user();
+        \Catnip\Validator::Validate([
+            $_POST[''] => ''
+        ]);
         static::index();
     }
 
@@ -37,12 +45,19 @@ class SupportController{
     {
         $user = Auth::user();
         $ticket = Ticket::Find($id);
+        if(!Ranks::UserHasHigherScore(2) && $ticket->user_id != $user->id)
+        {
+            Route::back();
+            return;
+        }
+        View::RenderFromFile(dirname(__DIR__).'/Views/Edit.php', "supportedit", ['ticket' => $ticket], false);
     }
 
     public static function update($id)
     {
         $user = Auth::user();
         $ticket = Ticket::Find($id);
+        static::index();
     }
 
     public static function delete($id)
