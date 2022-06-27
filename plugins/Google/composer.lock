@@ -71,7 +71,7 @@
                 "firebase/php-jwt": "~2.0|~3.0",
                 "google/apiclient-services": "*@dev",
                 "google/auth": "0.8",
-                "guzzlehttp/guzzle": "~5.2|~6.0",
+                "guzzlehttp/guzzle": "~5.2|~6.0|6.5.8^",
                 "guzzlehttp/psr7": "^1.2",
                 "monolog/monolog": "^1.17",
                 "php": ">=5.4",
